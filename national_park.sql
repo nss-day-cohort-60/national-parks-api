@@ -157,3 +157,14 @@ CREATE TABLE `Blog_Photos` (
   FOREIGN KEY (`blog_id`) REFERENCES `Blogs` (`id`),
   FOREIGN KEY (`photo_id`) REFERENCES `Photos` (`id`)
 );
+
+INSERT INTO `Users` VALUES (null, "Frodo", "Baggins", "frodo@baggins.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Bilbo", "Baggins", "bilbo@baggins.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Thorin", "Oakenshield", "thorin@oakenshield.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Aragorn", "Elessar", "aragorn@elessar.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Samwise", "Gamgee", "samwise@gamgee.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Peregrin", "Took", "peregrin@took.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Meriadoc", "Brandybuck", "meriadoc@brandybuck.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Gandalf", "The Grey", "gandalf@thegrey.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Lady", "Galadriel", "lady@galadriel.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Lord", "Elrond", "lord@elrond.com","gandalfsucks12");
