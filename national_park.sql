@@ -71,6 +71,36 @@ CREATE TABLE `Natural_Attractions` (
   `name` VARCHAR(255) NOT NULL
 );
 
+INSERT INTO `Natural_Attractions` VALUES (null, "Cascading waterfalls");
+INSERT INTO `Natural_Attractions` VALUES (null, "Hiking");
+INSERT INTO `Natural_Attractions` VALUES (null, "Backpacking");
+INSERT INTO `Natural_Attractions` VALUES (null, "Appalachian trail");
+INSERT INTO `Natural_Attractions` VALUES (null, "Rock climbing");
+INSERT INTO `Natural_Attractions` VALUES (null, "Rock formations");
+INSERT INTO `Natural_Attractions` VALUES (null, "Camping");
+INSERT INTO `Natural_Attractions` VALUES (null, "Rivers");
+INSERT INTO `Natural_Attractions` VALUES (null, "Creeks");
+INSERT INTO `Natural_Attractions` VALUES (null, "Forest");
+INSERT INTO `Natural_Attractions` VALUES (null, "Desert");
+INSERT INTO `Natural_Attractions` VALUES (null, "Wildlife");
+INSERT INTO `Natural_Attractions` VALUES (null, "Wildflowers");
+INSERT INTO `Natural_Attractions` VALUES (null, "Biological diversity");
+INSERT INTO `Natural_Attractions` VALUES (null, "Cacti");
+INSERT INTO `Natural_Attractions` VALUES (null, "Glaciers");
+INSERT INTO `Natural_Attractions` VALUES (null, "Wetland");
+INSERT INTO `Natural_Attractions` VALUES (null, "Mangrove ecosystem");
+INSERT INTO `Natural_Attractions` VALUES (null, "Marine ecosystems");
+INSERT INTO `Natural_Attractions` VALUES (null, "Scenic drives");
+INSERT INTO `Natural_Attractions` VALUES (null, "Native American history");
+INSERT INTO `Natural_Attractions` VALUES (null, "Bird watching");
+INSERT INTO `Natural_Attractions` VALUES (null, "Winds");
+INSERT INTO `Natural_Attractions` VALUES (null, "Scenic drives");
+INSERT INTO `Natural_Attractions` VALUES (null, "Deities in the parks");
+INSERT INTO `Natural_Attractions` VALUES (null, "Spectacular vistas");
+INSERT INTO `Natural_Attractions` VALUES (null, "Giant trees");
+INSERT INTO `Natural_Attractions` VALUES (null, "Deep valleys");
+INSERT INTO `Natural_Attractions` VALUES (null, "Alpine meadows");
+
 CREATE TABLE `Park_Natural_Attractions` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   `name` VARCHAR(255) NOT NULL,
