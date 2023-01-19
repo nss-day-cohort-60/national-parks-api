@@ -72,8 +72,8 @@ INSERT INTO `Favorite_Types` VALUES (null, "Park");
 INSERT INTO `Favorite_Types` VALUES (null, "Photo");
 INSERT INTO `Favorite_Types` VALUES (null, "Event");
 
-INSERT INTO `Wildlife-Groups` VALUES (null, "Mammals");
-INSERT INTO `Wildlife-Groups` VALUES (null, "Reptiles");
-INSERT INTO `Wildlife-Groups` VALUES (null, "Amphibians");
-INSERT INTO `Wildlife-Groups` VALUES (null, "Fish");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Mammals");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Reptiles");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Amphibians");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Fish");
 
