@@ -26,7 +26,6 @@ INSERT INTO `Parks` VALUES (null, "Kenai Fjords National Park", "At the edge of 
 INSERT INTO `Parks` VALUES (null, "Shenandoah", "Shenandoah National Park is a land bursting with cascading waterfalls, spectacular vistas, fields of wildflowers, and quiet wooded hollows. With over 200,000 acres of protected lands that are haven to deer, songbirds, and black bear, there's so much to explore.", "Jollett", "Virginia", 38.4755, -78.4535);
 INSERT INTO `Parks` VALUES (null, "Saguaro National Park", "Tucson, Arizona is home to the nation's largest cacti. The giant saguaro is the universal symbol of the American west. These majestic plants, found only in a small portion of the United States, are protected by Saguaro National Park, to the east and west of the modern city of Tucson. Here you have a chance to see these enormous cacti, silhouetted by the beauty of a magnificent desert sunset.", "Tuscon", "Arizona", 32.2967, 111.1666);
 
-
 CREATE TABLE `Amenities` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `type` VARCHAR(255) NOT NULL
@@ -53,10 +52,6 @@ CREATE TABLE `Wildlife_Groups` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   `name` VARCHAR(255) NOT NULL
 );
-INSERT INTO `Wildlife_Groups` VALUES (null, "Fish");
-INSERT INTO `Wildlife_Groups` VALUES (null, "Animals");
-INSERT INTO `Wildlife_Groups` VALUES (null, "Amphibians");
-INSERT INTO `Wildlife_Groups` VALUES (null, "Reptiles");
 
 CREATE TABLE `Park_Wildlife` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -70,6 +65,36 @@ CREATE TABLE `Natural_Attractions` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   `name` VARCHAR(255) NOT NULL
 );
+
+INSERT INTO `Natural_Attractions` VALUES (null, "Cascading waterfalls");
+INSERT INTO `Natural_Attractions` VALUES (null, "Hiking");
+INSERT INTO `Natural_Attractions` VALUES (null, "Backpacking");
+INSERT INTO `Natural_Attractions` VALUES (null, "Appalachian trail");
+INSERT INTO `Natural_Attractions` VALUES (null, "Rock climbing");
+INSERT INTO `Natural_Attractions` VALUES (null, "Rock formations");
+INSERT INTO `Natural_Attractions` VALUES (null, "Camping");
+INSERT INTO `Natural_Attractions` VALUES (null, "Rivers");
+INSERT INTO `Natural_Attractions` VALUES (null, "Creeks");
+INSERT INTO `Natural_Attractions` VALUES (null, "Forest");
+INSERT INTO `Natural_Attractions` VALUES (null, "Desert");
+INSERT INTO `Natural_Attractions` VALUES (null, "Wildlife");
+INSERT INTO `Natural_Attractions` VALUES (null, "Wildflowers");
+INSERT INTO `Natural_Attractions` VALUES (null, "Biological diversity");
+INSERT INTO `Natural_Attractions` VALUES (null, "Cacti");
+INSERT INTO `Natural_Attractions` VALUES (null, "Glaciers");
+INSERT INTO `Natural_Attractions` VALUES (null, "Wetland");
+INSERT INTO `Natural_Attractions` VALUES (null, "Mangrove ecosystem");
+INSERT INTO `Natural_Attractions` VALUES (null, "Marine ecosystems");
+INSERT INTO `Natural_Attractions` VALUES (null, "Scenic drives");
+INSERT INTO `Natural_Attractions` VALUES (null, "Native American history");
+INSERT INTO `Natural_Attractions` VALUES (null, "Bird watching");
+INSERT INTO `Natural_Attractions` VALUES (null, "Winds");
+INSERT INTO `Natural_Attractions` VALUES (null, "Scenic drives");
+INSERT INTO `Natural_Attractions` VALUES (null, "Deities in the parks");
+INSERT INTO `Natural_Attractions` VALUES (null, "Spectacular vistas");
+INSERT INTO `Natural_Attractions` VALUES (null, "Giant trees");
+INSERT INTO `Natural_Attractions` VALUES (null, "Deep valleys");
+INSERT INTO `Natural_Attractions` VALUES (null, "Alpine meadows");
 
 CREATE TABLE `Park_Natural_Attractions` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -196,3 +221,18 @@ INSERT INTO `Campgrounds` VALUES (null, "Lewis Mountain", 8, 26, "Lewis Mountain
 INSERT INTO `Campgrounds` VALUES (null, "Juniper Basin", 9, 3, "This campground is a strong day hike up the Tanque Verde Ridge over 6.9 miles and 3,000 feet of gain. Exceptional views can be seen throughout the hike, and habitats change quickly from desert scrub to oak savanna and pine/ juniper woodlands. Water here is very seasonal, and often dry during the spring and fall. Fires are allowed here, only from collecting dead and downed wood.");
 
 INSERT INTO `Campgrounds` VALUES (null, "Grass Shack", 9, 11, "Grass Shack is a great campground that offers shade from large sycamores as well as other riparian species. Two of the larger streams-Chimenea Creek and Madrona Creek run through and by the campground, providing water most of the year. Fires are not allowed here being in a fragile riparian ecosystem surrounded by a thick grassland. Access is from Camino Loma Alta, and this ten mile hike climbs 2,200 feet to a campground often not affected by winter storms. Views are exceptional to the south as you climb through and above the saguaros. This is the first of two campgrounds on the Arizona Trail.");
+INSERT INTO `Users` VALUES (null, "Frodo", "Baggins", "frodo@baggins.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Bilbo", "Baggins", "bilbo@baggins.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Thorin", "Oakenshield", "thorin@oakenshield.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Aragorn", "Elessar", "aragorn@elessar.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Samwise", "Gamgee", "samwise@gamgee.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Peregrin", "Took", "peregrin@took.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Meriadoc", "Brandybuck", "meriadoc@brandybuck.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Gandalf", "The Grey", "gandalf@thegrey.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Lady", "Galadriel", "lady@galadriel.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Lord", "Elrond", "lord@elrond.com","gandalfsucks12");
+
+INSERT INTO `Favorite_Types` VALUES (null, "Blog");
+INSERT INTO `Favorite_Types` VALUES (null, "Park");
+INSERT INTO `Favorite_Types` VALUES (null, "Photo");
+INSERT INTO `Favorite_Types` VALUES (null, "Event");
