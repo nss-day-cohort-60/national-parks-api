@@ -26,7 +26,6 @@ INSERT INTO `Parks` VALUES (null, "Kenai Fjords National Park", "At the edge of 
 INSERT INTO `Parks` VALUES (null, "Shenandoah", "Shenandoah National Park is a land bursting with cascading waterfalls, spectacular vistas, fields of wildflowers, and quiet wooded hollows. With over 200,000 acres of protected lands that are haven to deer, songbirds, and black bear, there's so much to explore.", "Jollett", "Virginia", 38.4755, -78.4535);
 INSERT INTO `Parks` VALUES (null, "Saguaro National Park", "Tucson, Arizona is home to the nation's largest cacti. The giant saguaro is the universal symbol of the American west. These majestic plants, found only in a small portion of the United States, are protected by Saguaro National Park, to the east and west of the modern city of Tucson. Here you have a chance to see these enormous cacti, silhouetted by the beauty of a magnificent desert sunset.", "Tuscon", "Arizona", 32.2967, 111.1666);
 
-
 CREATE TABLE `Amenities` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `type` VARCHAR(255) NOT NULL
@@ -53,10 +52,6 @@ CREATE TABLE `Wildlife_Groups` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   `name` VARCHAR(255) NOT NULL
 );
-INSERT INTO `Wildlife_Groups` VALUES (null, "Fish");
-INSERT INTO `Wildlife_Groups` VALUES (null, "Animals");
-INSERT INTO `Wildlife_Groups` VALUES (null, "Amphibians");
-INSERT INTO `Wildlife_Groups` VALUES (null, "Reptiles");
 
 CREATE TABLE `Park_Wildlife` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -192,3 +187,19 @@ CREATE TABLE `Blog_Photos` (
   FOREIGN KEY (`blog_id`) REFERENCES `Blogs` (`id`),
   FOREIGN KEY (`photo_id`) REFERENCES `Photos` (`id`)
 );
+
+INSERT INTO `Users` VALUES (null, "Frodo", "Baggins", "frodo@baggins.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Bilbo", "Baggins", "bilbo@baggins.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Thorin", "Oakenshield", "thorin@oakenshield.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Aragorn", "Elessar", "aragorn@elessar.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Samwise", "Gamgee", "samwise@gamgee.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Peregrin", "Took", "peregrin@took.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Meriadoc", "Brandybuck", "meriadoc@brandybuck.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Gandalf", "The Grey", "gandalf@thegrey.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Lady", "Galadriel", "lady@galadriel.com","gandalfsucks12");
+INSERT INTO `Users` VALUES (null, "Lord", "Elrond", "lord@elrond.com","gandalfsucks12");
+
+INSERT INTO `Favorite_Types` VALUES (null, "Blog");
+INSERT INTO `Favorite_Types` VALUES (null, "Park");
+INSERT INTO `Favorite_Types` VALUES (null, "Photo");
+INSERT INTO `Favorite_Types` VALUES (null, "Event");
