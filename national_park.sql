@@ -53,6 +53,10 @@ CREATE TABLE `Wildlife_Groups` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   `name` VARCHAR(255) NOT NULL
 );
+INSERT INTO `Wildlife_Groups` VALUES (null, "Fish");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Animals");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Amphibians");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Reptiles");
 
 CREATE TABLE `Park_Wildlife` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
