@@ -1,0 +1,15 @@
+[FORMAT]
+good-names=i,
+    j,
+    ex,
+    pk,
+    id,
+    do_PUT,
+    do_POST,
+    do_OPTIONS,
+    do_GET,
+    do_DELETE
+
+[MESSAGES CONTROL]
+disable=broad-except,redefined-builtin,missing-module-docstring
+
