@@ -168,3 +168,8 @@ INSERT INTO `Users` VALUES (null, "Meriadoc", "Brandybuck", "meriadoc@brandybuck
 INSERT INTO `Users` VALUES (null, "Gandalf", "The Grey", "gandalf@thegrey.com","gandalfsucks12");
 INSERT INTO `Users` VALUES (null, "Lady", "Galadriel", "lady@galadriel.com","gandalfsucks12");
 INSERT INTO `Users` VALUES (null, "Lord", "Elrond", "lord@elrond.com","gandalfsucks12");
+
+INSERT INTO `Favorite_Types` VALUES (null, "Blog");
+INSERT INTO `Favorite_Types` VALUES (null, "Park");
+INSERT INTO `Favorite_Types` VALUES (null, "Photo");
+INSERT INTO `Favorite_Types` VALUES (null, "Event");
