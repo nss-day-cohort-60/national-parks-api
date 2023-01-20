@@ -143,7 +143,7 @@ ADD COLUMN `isRanger` boolean;
 
 UPDATE `users`
 SET isRanger = false
-WHERE id <= 10
+WHERE id <= 10;
 
 INSERT INTO `Users` VALUES (null, "Smoky", "Bear", "smokybear@nationalparks.com","bearyhappy", true);
 
