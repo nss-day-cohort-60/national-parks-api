@@ -243,5 +243,3 @@ INSERT INTO User_Favorites VALUES (null, 3, 3, 9);
 INSERT INTO User_Favorites VALUES (null, 3, 2, 10);
 INSERT INTO User_Favorites VALUES (null, 3, 1, 11);
 INSERT INTO User_Favorites VALUES (null, 3, 3, 11);
-
-
