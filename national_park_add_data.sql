@@ -117,3 +117,5 @@ INSERT INTO Events VALUES (null, "Glacier Photo Workshop", "Glacier National Par
 INSERT INTO Events VALUES (null, "Ice Fishing in the Kenai Fjords", "The fjords and Resurrection Bay are hotspots for salmon, halibut, rockfish, and lingcod. Many anglers even fish right from shore in and around Seward. State fishing licenses are required for all area fishing.", '2023-06-24 04:15:00', 7);
 INSERT INTO Events VALUES (null, "Rapidan Camp Tours", "Rapidan Camp is the former summer retreat of President Herbert and First Lady Lou Henry Hoover. On this tour, a ranger guides you on a hike through this historic landmark.", '2023-02-14 11:30:00', 8);
 INSERT INTO Events VALUES (null, "Investigation of the 1000 Year Old Rock Art!", "Become a Rock Art Detective and investigate the who, when, and how mysteries of the 1000 year old Hohokam Petroglyphs. An optional 1/4 mile hike will follow the program, discussing some of the common plants and animals found here in the desert.", '2023-10-24 11:15:00', 9);
+
+INSERT INTO `Wildlife` VALUES (null, name info wildlife_group park id
