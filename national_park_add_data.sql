@@ -106,6 +106,8 @@ INSERT INTO `Wildlife_Groups` VALUES (null, "Mammals");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Reptiles");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Amphibians");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Fish");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Birds");
+
 
 INSERT INTO Events VALUES (null, "Yoga Retreat in Joshua Tree", "Are you ready to connect with Self, others, nature, community and experience a private sound bath at the Integratron?", '2023-05-26 15:00:00', 1);
 INSERT INTO Events VALUES (null, "Leafy, Barky, Toxic?", "The Everglades are home to a variety of tropical plants. Explore local plant life and fun facts. Program travels about ¼ mile (.25 km). Meet in front of the visitor center. 30 minutes.", '2023-04-22 08:30:00', 2);
@@ -379,3 +381,5 @@ INSERT INTO `Wildlife` VALUES (null, "Peregrine Falcon", "https://res.cloudinary
 INSERT INTO `Wildlife` VALUES (null, "Ringtail", "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674244857/Wildlife/ringtail_20copy_ymxocn.jpg", "Ringtails are sometimes called ringtail-cats or miners cats, but they aren’t related to cats at all. Close relatives include the coati and racoon. Ringtails prefer habitats with rocky outcroppings, canyons, or talus slopes and can be found in semi-arid country, deserts, chaparral, oak woodlands, pinyon pine woodlands, juniper woodlands, and montane conifer forests. They use a variety of vocalizations to get their point across. Adults can emit an explosive bark, a piercing scream, and a long, high-pitched call. Babies chirp, squeak, and whimper.", 1);
 INSERT INTO `Wildlife` VALUES (null,"Gila Monster", "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674245173/Wildlife/Reptile_GilaMonster-1-scaled_utapub.jpg", "Gila Monsters are one of only two venomous lizards in the world! They produce venom in glands of the lower jaw and channel it along grooves in the teeth for secretion. Once a Gila monster bites, it generally holds on tight, chewing more and more venom into the bite. The venom is believed to be a defensive weapon as most of the lizard’s prey is defenseless. hey bite only as a last resort. The bite is extremely painful to humans but rarely fatal. Most human bites occur when someone purposely aggravates or tries to handle a Gila monster. If left alone, they are harmless.", 2);
 
+ALTER TABLE 'Wildlife_Groups'
+DROP COLUMN 'Birds';
