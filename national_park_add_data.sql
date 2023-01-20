@@ -72,7 +72,6 @@ INSERT INTO `Favorite_Types` VALUES (null, "Park");
 INSERT INTO `Favorite_Types` VALUES (null, "Photo");
 INSERT INTO `Favorite_Types` VALUES (null, "Event");
 
-<<<<<<< HEAD
 INSERT INTO Amenities VALUES (null, 'Parking');
 INSERT INTO Amenities VALUES (null, 'Restrooms');
 INSERT INTO Amenities VALUES (null, 'Dining');
@@ -103,12 +102,20 @@ INSERT INTO Park_Amenities VALUES (null, 'Family Restaurant', 3, 1);
 INSERT INTO Park_Amenities VALUES (null, 'The Birdfeeder', 3, 8);
 INSERT INTO Park_Amenities VALUES (null, 'Prickles', 3, 9);
 
-=======
->>>>>>> main
 INSERT INTO `Wildlife_Groups` VALUES (null, "Mammals");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Reptiles");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Amphibians");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Fish");
+
+INSERT INTO Events VALUES (null, "Yoga Retreat in Joshua Tree", "Are you ready to connect with Self, others, nature, community and experience a private sound bath at the Integratron?", '2023-05-26 15:00:00', 1);
+INSERT INTO Events VALUES (null, "Leafy, Barky, Toxic?", "The Everglades are home to a variety of tropical plants. Explore local plant life and fun facts. Program travels about ¼ mile (.25 km). Meet in front of the visitor center. 30 minutes.", '2023-04-22 08:30:00', 2);
+INSERT INTO Events VALUES (null, "Ponies in the Smokies", "Come and enjoy the beautiful Smoky Mountains and kick off the car show season right at Ponies in the Smokies! There are indoor vendors, competitions, and shows you don't want to miss at this popular car show.", '2023-03-20 18:00:00', 3);
+INSERT INTO Events VALUES (null, "Hosmer Hike", "Join a ranger for a free guided walk through Hosmer Grove. Listen to endemic forest birds, identify native Hawaiian plants, and learn a little more about the past, present, and future of this unique place.  Participation is first-come, first-served.", '2023-01-28 10:00:00', 4);
+INSERT INTO Events VALUES (null, "Bigfoot Hunting", "As the legends go, there is a being of great intellect and strength trolling the woods of Yosemite National Park - or is there? Join us on our 3-day, 2-night expedition into the unknown to find out.", '2023-03-24 07:15:00', 5);
+INSERT INTO Events VALUES (null, "Glacier Photo Workshop", "Glacier National Park is a landscape photographer’s paradise. Join us for a fall photo workshop in an unforgettable setting.", '2023-09-19 16:00:00', 6);
+INSERT INTO Events VALUES (null, "Ice Fishing in the Kenai Fjords", "The fjords and Resurrection Bay are hotspots for salmon, halibut, rockfish, and lingcod. Many anglers even fish right from shore in and around Seward. State fishing licenses are required for all area fishing.", '2023-06-24 04:15:00', 7);
+INSERT INTO Events VALUES (null, "Rapidan Camp Tours", "Rapidan Camp is the former summer retreat of President Herbert and First Lady Lou Henry Hoover. On this tour, a ranger guides you on a hike through this historic landmark.", '2023-02-14 11:30:00', 8);
+INSERT INTO Events VALUES (null, "Investigation of the 1000 Year Old Rock Art!", "Become a Rock Art Detective and investigate the who, when, and how mysteries of the 1000 year old Hohokam Petroglyphs. An optional 1/4 mile hike will follow the program, discussing some of the common plants and animals found here in the desert.", '2023-10-24 11:15:00', 9);
 
 ALTER TABLE `users`
 ADD COLUMN `isRanger` boolean; 
@@ -119,9 +126,6 @@ WHERE id <= 10
 
 INSERT INTO `Users` VALUES (null, "Smoky", "Bear", "smokybear@nationalparks.com","bearyhappy", true);
 
-INSERT INTO `Photos` VALUES (null, "", 11, );
-
-<<<<<<< HEAD
 INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232167/National-Parks/Park-Photos/joshua_tree_2_np863y.jpg", 11, 1);
 INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232168/National-Parks/Park-Photos/joshua_tree_4_p1hwpc.jpg", 11, 1);
 INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232168/National-Parks/Park-Photos/joshua_tree_1_my5yzw.jpg", 11, 1);
@@ -133,20 +137,25 @@ INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/u
 INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232184/National-Parks/Park-Photos/great_smoky_3_vojzn3.jpg", 11, 3);
 INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232185/National-Parks/Park-Photos/great_smoky_1_hv505f.jpg", 11, 3);
 INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232187/National-Parks/Park-Photos/great_smoky_2_opfzby.jpg", 11, 3);
-=======
-INSERT INTO Park_Amenities VALUES (null, 'Gator Grub', 3, 2);
-INSERT INTO Park_Amenities VALUES (null, 'Old Smoky Links', 3, 3);
-INSERT INTO Park_Amenities VALUES (null, 'Famliy Restaurant', 3, 1);
-INSERT INTO Park_Amenities VALUES (null, 'The Birdfeeder', 3, 8);
-INSERT INTO Park_Amenities VALUES (null, 'Prickles', 3, 9);
-
-INSERT INTO Events VALUES (null, "Yoga Retreat in Joshua Tree", "Are you ready to connect with Self, others, nature, community and experience a private sound bath at the Integratron?", '2023-05-26 15:00:00', 1);
-INSERT INTO Events VALUES (null, "Leafy, Barky, Toxic?", "The Everglades are home to a variety of tropical plants. Explore local plant life and fun facts. Program travels about ¼ mile (.25 km). Meet in front of the visitor center. 30 minutes.", '2023-04-22 08:30:00', 2);
-INSERT INTO Events VALUES (null, "Ponies in the Smokies", "Come and enjoy the beautiful Smoky Mountains and kick off the car show season right at Ponies in the Smokies! There are indoor vendors, competitions, and shows you don't want to miss at this popular car show.", '2023-03-20 18:00:00', 3);
-INSERT INTO Events VALUES (null, "Hosmer Hike", "Join a ranger for a free guided walk through Hosmer Grove. Listen to endemic forest birds, identify native Hawaiian plants, and learn a little more about the past, present, and future of this unique place.  Participation is first-come, first-served.", '2023-01-28 10:00:00', 4);
-INSERT INTO Events VALUES (null, "Bigfoot Hunting", "As the legends go, there is a being of great intellect and strength trolling the woods of Yosemite National Park - or is there? Join us on our 3-day, 2-night expedition into the unknown to find out.", '2023-03-24 07:15:00', 5);
-INSERT INTO Events VALUES (null, "Glacier Photo Workshop", "Glacier National Park is a landscape photographer’s paradise. Join us for a fall photo workshop in an unforgettable setting.", '2023-09-19 16:00:00', 6);
-INSERT INTO Events VALUES (null, "Ice Fishing in the Kenai Fjords", "The fjords and Resurrection Bay are hotspots for salmon, halibut, rockfish, and lingcod. Many anglers even fish right from shore in and around Seward. State fishing licenses are required for all area fishing.", '2023-06-24 04:15:00', 7);
-INSERT INTO Events VALUES (null, "Rapidan Camp Tours", "Rapidan Camp is the former summer retreat of President Herbert and First Lady Lou Henry Hoover. On this tour, a ranger guides you on a hike through this historic landmark.", '2023-02-14 11:30:00', 8);
-INSERT INTO Events VALUES (null, "Investigation of the 1000 Year Old Rock Art!", "Become a Rock Art Detective and investigate the who, when, and how mysteries of the 1000 year old Hohokam Petroglyphs. An optional 1/4 mile hike will follow the program, discussing some of the common plants and animals found here in the desert.", '2023-10-24 11:15:00', 9);
->>>>>>> main
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232194/National-Parks/Park-Photos/Haleakala%CC%84_2_ggoljm.jpg", 11, 4);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232194/National-Parks/Park-Photos/Haleakala%CC%84_3_opcuyb.jpg", 11, 4);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232195/National-Parks/Park-Photos/Haleakala%CC%84_1_bidyin.jpg", 11, 4);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232205/National-Parks/Park-Photos/Yosmite_5_whh42c.jpg", 11, 5);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232207/National-Parks/Park-Photos/Yosemite_1_hfz28r.jpg", 11, 5);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232207/National-Parks/Park-Photos/Yosemite_4_agiwe5.jpg", 11, 5);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232207/National-Parks/Park-Photos/Yosemite_2_vuanbz.jpg", 11, 5);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232208/National-Parks/Park-Photos/Yosemite_3_xekp2k.jpg", 11, 5);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232217/National-Parks/Park-Photos/glacier_3_whygqo.jpg", 11, 6);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232217/National-Parks/Park-Photos/glacier_1_ihkmyw.jpg", 11, 6);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232218/National-Parks/Park-Photos/glacier_2_tqjhue.jpg", 11, 6);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232228/National-Parks/Park-Photos/kenai_3_u3za9b.jpg", 11, 7);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232228/National-Parks/Park-Photos/kenai_1_gcexww.jpg", 11, 7);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232229/National-Parks/Park-Photos/kenai_2_bdhbj1.jpg", 11, 7);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232229/National-Parks/Park-Photos/kenai_4_bldbur.jpg", 11, 7);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232236/National-Parks/Park-Photos/shenandoah_3_dvtung.jpg", 11, 8);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232236/National-Parks/Park-Photos/shenandoah_2_bpn61w.jpg", 11, 8);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232237/National-Parks/Park-Photos/shenandoah_4_nwmmge.jpg", 11, 8);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232237/National-Parks/Park-Photos/shenandoah_1_htdcwe.jpg", 11, 8);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232256/National-Parks/Park-Photos/saguro_2_ryfzzw.jpg", 11, 9);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232256/National-Parks/Park-Photos/saguro_3_vknqiz.jpg", 11, 9);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232258/National-Parks/Park-Photos/saguro_1_lpkfwb.jpg", 11, 9);
