@@ -117,6 +117,27 @@ INSERT INTO Events VALUES (null, "Ice Fishing in the Kenai Fjords", "The fjords 
 INSERT INTO Events VALUES (null, "Rapidan Camp Tours", "Rapidan Camp is the former summer retreat of President Herbert and First Lady Lou Henry Hoover. On this tour, a ranger guides you on a hike through this historic landmark.", '2023-02-14 11:30:00', 8);
 INSERT INTO Events VALUES (null, "Investigation of the 1000 Year Old Rock Art!", "Become a Rock Art Detective and investigate the who, when, and how mysteries of the 1000 year old Hohokam Petroglyphs. An optional 1/4 mile hike will follow the program, discussing some of the common plants and animals found here in the desert.", '2023-10-24 11:15:00', 9);
 
+INSERT INTO Event_Registration VALUES (null, 1, 9);
+INSERT INTO Event_Registration VALUES (null, 1, 8);
+INSERT INTO Event_Registration VALUES (null, 2, 10);
+INSERT INTO Event_Registration VALUES (null, 2, 9);
+INSERT INTO Event_Registration VALUES (null, 3, 4);
+INSERT INTO Event_Registration VALUES (null, 3, 3);
+INSERT INTO Event_Registration VALUES (null, 4, 2);
+INSERT INTO Event_Registration VALUES (null, 4, 3);
+INSERT INTO Event_Registration VALUES (null, 5, 1);
+INSERT INTO Event_Registration VALUES (null, 5, 6);
+INSERT INTO Event_Registration VALUES (null, 5, 7);
+INSERT INTO Event_Registration VALUES (null, 5, 5);
+INSERT INTO Event_Registration VALUES (null, 6, 5);
+INSERT INTO Event_Registration VALUES (null, 6, 1);
+INSERT INTO Event_Registration VALUES (null, 7, 9);
+INSERT INTO Event_Registration VALUES (null, 7, 10);
+INSERT INTO Event_Registration VALUES (null, 8, 8);
+INSERT INTO Event_Registration VALUES (null, 8, 2);
+INSERT INTO Event_Registration VALUES (null, 9, 6);
+INSERT INTO Event_Registration VALUES (null, 9, 7);
+
 ALTER TABLE `users`
 ADD COLUMN `isRanger` boolean; 
 
