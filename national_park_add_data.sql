@@ -98,41 +98,34 @@ INSERT INTO Park_Amenities VALUES (null, null, 1, 9);
 
 INSERT INTO Park_Amenities VALUES (null, 'Gator Grub', 3, 2);
 INSERT INTO Park_Amenities VALUES (null, 'Old Smoky Links', 3, 3);
-INSERT INTO Park_Amenities VALUES (null, 'Famliy Restaurant', 3, 1);
+INSERT INTO Park_Amenities VALUES (null, 'Family Restaurant', 3, 1);
 INSERT INTO Park_Amenities VALUES (null, 'The Birdfeeder', 3, 8);
 INSERT INTO Park_Amenities VALUES (null, 'Prickles', 3, 9);
+
 INSERT INTO `Wildlife_Groups` VALUES (null, "Mammals");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Reptiles");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Amphibians");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Fish");
 
+ALTER TABLE `users`
+ADD COLUMN `isRanger` boolean; 
 
-INSERT INTO Amenities VALUES (null, 'Parking');
-INSERT INTO Amenities VALUES (null, 'Restrooms');
-INSERT INTO Amenities VALUES (null, 'Dining');
-INSERT INTO Amenities VALUES (null, 'Camping');
+UPDATE `users`
+SET isRanger = false
+WHERE id <= 10
 
-INSERT INTO Park_Amenities VALUES (null, null, 2, 1);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 2);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 3);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 4);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 5);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 7);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 8);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 9);
+INSERT INTO `Users` VALUES (null, "Smoky", "Bear", "smokybear@nationalparks.com","bearyhappy", true);
 
-INSERT INTO Park_Amenities VALUES (null, null, 1, 1);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 2);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 3);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 4);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 5);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 6);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 7);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 8);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 9);
+INSERT INTO `Photos` VALUES (null, "", 11, );
 
-INSERT INTO Park_Amenities VALUES (null, 'Gator Grub', 3, 2);
-INSERT INTO Park_Amenities VALUES (null, 'Old Smoky Links', 3, 3);
-INSERT INTO Park_Amenities VALUES (null, 'Famliy Restaurant', 3, 1);
-INSERT INTO Park_Amenities VALUES (null, 'The Birdfeeder', 3, 8);
-INSERT INTO Park_Amenities VALUES (null, 'Prickles', 3, 9);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232167/National-Parks/Park-Photos/joshua_tree_2_np863y.jpg", 11, 1);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232168/National-Parks/Park-Photos/joshua_tree_4_p1hwpc.jpg", 11, 1);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232168/National-Parks/Park-Photos/joshua_tree_1_my5yzw.jpg", 11, 1);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232169/National-Parks/Park-Photos/joshua_tree_3_xeuael.jpg", 11, 1);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232176/National-Parks/Park-Photos/everglades_3_jctxp5.jpg", 11, 2);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232177/National-Parks/Park-Photos/everglades_4_arkanp.jpg", 11, 2);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232177/National-Parks/Park-Photos/everglades_1_otti4j.jpg", 11, 2);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232178/National-Parks/Park-Photos/everglades_2_hkp3sw.jpg", 11, 2);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232184/National-Parks/Park-Photos/great_smoky_3_vojzn3.jpg", 11, 3);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232185/National-Parks/Park-Photos/great_smoky_1_hv505f.jpg", 11, 3);
+INSERT INTO `Photos` VALUES (null, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674232187/National-Parks/Park-Photos/great_smoky_2_opfzby.jpg", 11, 3);
