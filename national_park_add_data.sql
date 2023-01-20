@@ -143,7 +143,7 @@ ADD COLUMN `isRanger` boolean;
 
 UPDATE `users`
 SET isRanger = false
-WHERE id <= 10
+WHERE id <= 10;
 
 INSERT INTO `Users` VALUES (null, "Smoky", "Bear", "smokybear@nationalparks.com","bearyhappy", true);
 
@@ -297,3 +297,38 @@ INSERT INTO `Park_Natural_Attractions` VALUES (null, "Freeman Homestead Trail", 
 INSERT INTO `Park_Natural_Attractions` VALUES (null, "Saguaro Cactus", "Saguaro National Park is home to 25 species of cactus ranging from the towering saguaro cactus (Carnegiea gigantea) to the tiniest type of cactus in the park, the mammillaria (Mammillaria spp).", 9, 15);
 INSERT INTO `Park_Natural_Attractions` VALUES (null, "Signal Hill Petroglyph Area", "The site consists of over 200 prehistoric Native American petroglyphs many of which can be viewed from the visitor trail that ascends the hill ", 9, 21);
 INSERT INTO `Park_Natural_Attractions` VALUES (null, "Tanque Verde Ridge trail", "The best place to view the sunset on the east side of the park.", 9, 26);
+
+INSERT INTO Camping_Reservations VALUES (null, '2023-10-24 11:15:00', '2023-10-26 11:15:00', 1, 1);
+INSERT INTO Camping_Reservations VALUES (null, '2023-08-24 11:15:00', '2023-08-26 11:15:00', 12, 1);
+INSERT INTO Camping_Reservations VALUES (null, '2023-11-24 11:15:00', '2023-11-26 11:15:00', 16, 1);
+INSERT INTO Camping_Reservations VALUES (null, '2023-07-24 11:15:00', '2023-07-26 11:15:00', 2, 2);
+INSERT INTO Camping_Reservations VALUES (null, '2023-08-24 11:15:00', '2023-08-26 11:15:00', 1, 2);
+INSERT INTO Camping_Reservations VALUES (null, '2023-09-24 11:15:00', '2023-09-26 11:15:00', 15, 2);
+INSERT INTO Camping_Reservations VALUES (null, '2023-11-12 11:15:00', '2023-11-26 11:15:00', 17, 2);
+INSERT INTO Camping_Reservations VALUES (null, '2023-10-24 11:15:00', '2023-10-26 11:15:00', 3, 3);
+INSERT INTO Camping_Reservations VALUES (null, '2023-11-24 11:15:00', '2023-11-26 11:15:00', 2, 3);
+INSERT INTO Camping_Reservations VALUES (null, '2023-07-04 11:15:00', '2023-07-09 11:15:00', 14, 3);
+INSERT INTO Camping_Reservations VALUES (null, '2023-10-24 11:15:00', '2023-10-26 11:15:00', 4, 4);
+INSERT INTO Camping_Reservations VALUES (null, '2023-11-12 11:15:00', '2023-11-26 11:15:00', 13, 4);
+INSERT INTO Camping_Reservations VALUES (null, '2023-03-24 11:15:00', '2023-03-26 11:15:00', 13, 4);
+INSERT INTO Camping_Reservations VALUES (null, '2023-10-24 11:15:00', '2023-10-26 11:15:00', 5, 5);
+INSERT INTO Camping_Reservations VALUES (null, '2023-12-01 11:15:00', '2023-12-04 11:15:00', 14, 5);
+INSERT INTO Camping_Reservations VALUES (null, '2023-07-04 11:15:00', '2023-07-09 11:15:00', 12, 5);
+INSERT INTO Camping_Reservations VALUES (null, '2023-10-24 11:15:00', '2023-10-26 11:15:00', 6, 6);
+INSERT INTO Camping_Reservations VALUES (null, '2023-11-12 11:15:00', '2023-11-26 11:15:00', 3, 6);
+INSERT INTO Camping_Reservations VALUES (null, '2023-12-01 11:15:00', '2023-12-04 11:15:00', 11, 6);
+INSERT INTO Camping_Reservations VALUES (null, '2023-10-24 11:15:00', '2023-10-26 11:15:00', 7, 7);
+INSERT INTO Camping_Reservations VALUES (null, '2023-07-04 11:15:00', '2023-07-09 11:15:00', 17, 7);
+INSERT INTO Camping_Reservations VALUES (null, '2023-11-12 11:15:00', '2023-11-26 11:15:00', 10, 7);
+INSERT INTO Camping_Reservations VALUES (null, '2023-10-24 11:15:00', '2023-10-26 11:15:00', 8, 8);
+INSERT INTO Camping_Reservations VALUES (null, '2023-07-04 11:15:00', '2023-07-09 11:15:00', 15, 8);
+INSERT INTO Camping_Reservations VALUES (null, '2023-11-24 11:15:00', '2023-11-26 11:15:00', 9, 8);
+INSERT INTO Camping_Reservations VALUES (null, '2023-10-24 11:15:00', '2023-10-26 11:15:00', 9, 9);
+INSERT INTO Camping_Reservations VALUES (null, '2023-12-01 11:15:00', '2023-12-04 11:15:00', 4, 9);
+INSERT INTO Camping_Reservations VALUES (null, '2023-04-24 11:15:00', '2023-04-26 11:15:00', 8, 9);
+INSERT INTO Camping_Reservations VALUES (null, '2023-10-24 11:15:00', '2023-10-26 11:15:00', 10, 10);
+INSERT INTO Camping_Reservations VALUES (null, '2023-06-04 11:15:00', '2023-06-09 11:15:00', 5, 10);
+INSERT INTO Camping_Reservations VALUES (null, '2023-07-04 11:15:00', '2023-07-09 11:15:00', 7, 10);
+INSERT INTO Camping_Reservations VALUES (null, '2023-10-24 11:15:00', '2023-10-26 11:15:00', 11, 11);
+INSERT INTO Camping_Reservations VALUES (null, '2023-06-24 11:15:00', '2023-06-26 11:15:00', 16, 11);
+INSERT INTO Camping_Reservations VALUES (null, '2023-03-24 11:15:00', '2023-03-26 11:15:00', 6, 11);
