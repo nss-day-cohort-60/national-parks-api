@@ -383,3 +383,9 @@ INSERT INTO `Wildlife` VALUES (null,"Gila Monster", "https://res.cloudinary.com/
 
 ALTER TABLE 'Wildlife_Groups'
 DROP COLUMN 'Birds';
+
+INSERT INTO `Wildlife_Groups` VALUES (null, "Mammals");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Reptiles");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Amphibians");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Fish");
+INSERT INTO `Wildlife_Groups` VALUES (null, "Birds");
