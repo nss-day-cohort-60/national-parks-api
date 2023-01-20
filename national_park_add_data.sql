@@ -105,3 +105,4 @@ INSERT INTO `Wildlife_Groups` VALUES (null, "Mammals");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Reptiles");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Amphibians");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Fish");
+
