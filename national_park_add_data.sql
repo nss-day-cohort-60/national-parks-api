@@ -98,41 +98,10 @@ INSERT INTO Park_Amenities VALUES (null, null, 1, 9);
 
 INSERT INTO Park_Amenities VALUES (null, 'Gator Grub', 3, 2);
 INSERT INTO Park_Amenities VALUES (null, 'Old Smoky Links', 3, 3);
-INSERT INTO Park_Amenities VALUES (null, 'Famliy Restaurant', 3, 1);
+INSERT INTO Park_Amenities VALUES (null, 'Family Restaurant', 3, 1);
 INSERT INTO Park_Amenities VALUES (null, 'The Birdfeeder', 3, 8);
 INSERT INTO Park_Amenities VALUES (null, 'Prickles', 3, 9);
 INSERT INTO `Wildlife_Groups` VALUES (null, "Mammals");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Reptiles");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Amphibians");
 INSERT INTO `Wildlife_Groups` VALUES (null, "Fish");
-
-
-INSERT INTO Amenities VALUES (null, 'Parking');
-INSERT INTO Amenities VALUES (null, 'Restrooms');
-INSERT INTO Amenities VALUES (null, 'Dining');
-INSERT INTO Amenities VALUES (null, 'Camping');
-
-INSERT INTO Park_Amenities VALUES (null, null, 2, 1);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 2);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 3);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 4);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 5);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 7);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 8);
-INSERT INTO Park_Amenities VALUES (null, null, 2, 9);
-
-INSERT INTO Park_Amenities VALUES (null, null, 1, 1);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 2);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 3);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 4);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 5);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 6);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 7);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 8);
-INSERT INTO Park_Amenities VALUES (null, null, 1, 9);
-
-INSERT INTO Park_Amenities VALUES (null, 'Gator Grub', 3, 2);
-INSERT INTO Park_Amenities VALUES (null, 'Old Smoky Links', 3, 3);
-INSERT INTO Park_Amenities VALUES (null, 'Famliy Restaurant', 3, 1);
-INSERT INTO Park_Amenities VALUES (null, 'The Birdfeeder', 3, 8);
-INSERT INTO Park_Amenities VALUES (null, 'Prickles', 3, 9);
