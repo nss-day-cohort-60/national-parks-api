@@ -355,9 +355,6 @@ INSERT INTO 'blog_photos' VALUES (null, 3, 36);
 ALTER TABLE `Wildlife`
 ADD COLUMN `image` varchar; 
 
-ALTER TABLE `Wildlife_Groups`
-ADD COLUMN `Birds` varchar; 
-
 INSERT INTO `Wildlife` VALUES (null, "Mountain Lion", "In all of Joshua Tree, few mammals measure up to the mountain lion, in terms of speed, fierceness, and aggressiveness. Known to many by multiple names, such as cougars, puma, and panthers, these nocturnal animals are excellent hunters who favor ambushing their prey. Lurking in the shades of shrubs, a panther exercises patience before pouncing on prey. Ordinarily, panthers would not attack humans, as they do not recognize humans as prey, but other factors could change this. Being territorial, mountain lions will perceive humans as threats during encroachment of their territories. In such instances, they may attack. Mountain lion attacks on humans are rare as they are very reclusive and avoid human contact.", 1, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674244197/Wildlife/Mountain-Lion-Puma-concolor.jpg_wbe7ck.webp");
 INSERT INTO `Wildlife` VALUES (null, "Desert Tortoise","The most studied animal in the park is the Mojave Desert Tortoise. These well-camouflaged, slow-moving reptiles spend most of their time in burrows, but can occasionally be seen crossing park roads. They are currently listed as a threatened species, in part due to habitat loss, bacterial infections, and predation of hatchlings by rapidly increasing raven population. When stressed, they release precious water from their bladders and are at greater risk of dehydration.", 2, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674244218/Wildlife/pexels-photo-6394640_ipsnoy.jpg");
 INSERT INTO `Wildlife` VALUES (null, "California Tree Frog", "The California tree frog is a species of special management concern in Joshua Tree. It has a limited range in the park and is isolated from the rest of the California tree frog population. Tree frogs are found in the rocky, permanent water sources created by the Pinto Fault along the northern edge of the park. In Joshua Tree, the species is at the easternmost edge of its range.", 3, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674244243/Wildlife/14045719127_3f9c36bc40_w-1_bcrhj2.webp");
@@ -379,8 +376,6 @@ INSERT INTO `Wildlife` VALUES (null, "Bobcat", "The bobcat is Shenandoah Nationa
 INSERT INTO `Wildlife` VALUES (null, "Peregrine Falcon", "The Peregrine Falcon is a very fast flier, averaging 40-55 km/h (25-34 mph) in traveling flight, and reaching speeds up to 112 km/h (69 mph) in direct pursuit of prey. During its spectacular hunting stoop from heights of over 1 km (0.62 mi), the peregrine may reach speeds of 320 km/h (200 mph) as it drops toward its prey. The oldest recorded Peregrine Falcon was at least 19 years, 9 months old, when it was identified by its band in Minnesota in 2012, the same state where it had been banded in 1992.", 5, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674244815/Wildlife/pexels-photo-1056104_u6grpw.jpg");
 INSERT INTO `Wildlife` VALUES (null, "Ringtail", "Ringtails are sometimes called ringtail-cats or miners cats, but they aren’t related to cats at all. Close relatives include the coati and racoon. Ringtails prefer habitats with rocky outcroppings, canyons, or talus slopes and can be found in semi-arid country, deserts, chaparral, oak woodlands, pinyon pine woodlands, juniper woodlands, and montane conifer forests. They use a variety of vocalizations to get their point across. Adults can emit an explosive bark, a piercing scream, and a long, high-pitched call. Babies chirp, squeak, and whimper.", 1, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674244857/Wildlife/ringtail_20copy_ymxocn.jpg");
 INSERT INTO `Wildlife` VALUES (null, "Gila Monster", "Gila Monsters are one of only two venomous lizards in the world! They produce venom in glands of the lower jaw and channel it along grooves in the teeth for secretion. Once a Gila monster bites, it generally holds on tight, chewing more and more venom into the bite. The venom is believed to be a defensive weapon as most of the lizard’s prey is defenseless. They bite only as a last resort. The bite is extremely painful to humans but rarely fatal. Most human bites occur when someone purposely aggravates or tries to handle a Gila monster. If left alone, they are harmless.", 2, "https://res.cloudinary.com/dcuwovsbv/image/upload/v1674245173/Wildlife/Reptile_GilaMonster-1-scaled_utapub.jpg");
-ALTER TABLE 'Wildlife_Groups'
-DROP COLUMN 'Birds';
 
 INSERT INTO `Park_Wildlife` VALUES (null, 1, 1);
 INSERT INTO `Park_Wildlife` VALUES (null, 1, 2);
@@ -403,8 +398,3 @@ INSERT INTO `Park_Wildlife` VALUES (null, 8, 18);
 INSERT INTO `Park_Wildlife` VALUES (null, 8, 19);
 INSERT INTO `Park_Wildlife` VALUES (null, 9, 20);
 INSERT INTO `Park_Wildlife` VALUES (null, 9, 21);
-
-
-
-ALTER TABLE 'Wildlife_Groups'
-DROP COLUMN 'Birds';
