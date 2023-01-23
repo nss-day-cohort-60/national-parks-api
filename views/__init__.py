@@ -1,0 +1,2 @@
+from .wildlife_views import get_all_wildlife, get_single_wildlife_type, get_wildlife_by_park_id
+from .natural_attraction_views import get_all_natural_attractions, get_single_natural_attraction
