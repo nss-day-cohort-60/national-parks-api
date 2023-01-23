@@ -3,7 +3,7 @@ from models import Natural_Attraction
 
 
 def get_all_natural_attractions():
-    # Open a connection to the database
+    """Function to retrieve all natural_attractions from a database and return the data as a list of dictionaries"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()

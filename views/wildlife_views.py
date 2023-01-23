@@ -3,7 +3,7 @@ from models import Wildlife
 
 
 def get_all_wildlife():
-    # Open a connection to the database
+    """Function to retrieve all wildlife from a database and return the data as a list of dictionaries"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -31,6 +31,7 @@ def get_all_wildlife():
 
 
 def get_single_wildlife_type(id):
+    """A function that retrieves a single wildlife type based on the given id"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -56,6 +57,7 @@ def get_single_wildlife_type(id):
 
 
 def get_wildlife_by_park_id(park_id):
+    """A function that takes in one parameter and used to retrieve information about wildlife in a specific park."""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
