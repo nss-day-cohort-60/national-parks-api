@@ -68,10 +68,10 @@ CREATE TABLE `Park_Natural_Attractions` (
 
 CREATE TABLE `Campgrounds` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  `description` VARCHAR(255) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `park_id` INTEGER NOT NULL,
   `available_sites` INTEGER NOT NULL,
+  `description` VARCHAR(255) NOT NULL,
   FOREIGN KEY (`park_id`) REFERENCES `Parks` (`id`)
 );
 
