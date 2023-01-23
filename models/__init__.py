@@ -5,3 +5,5 @@ from .park_amenity import Park_Amenity
 from .user import User
 from .user_favorite import User_Favorite
 from .blog import Blog
+from .parks import Parks
+from .photos import Photos
