@@ -1,4 +1,3 @@
-import sqlite3
 from models import Natural_Attraction
 from sql_helper import get_all, get_single
 

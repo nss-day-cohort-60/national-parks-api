@@ -1,4 +1,3 @@
-import sqlite3
 from models import User, User_Favorite
 from sql_helper import get_all, get_single
 

@@ -1,4 +1,3 @@
-import sqlite3
 from models import Blog
 from sql_helper import get_all, get_single
 
