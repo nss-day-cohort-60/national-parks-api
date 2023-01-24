@@ -1,6 +1,6 @@
 import sqlite3
 from models import Wildlife
-from sql_helper import get_all, get_single
+from sql_helper import get_all, get_single, get_all_by_param
 
 
 def get_all_wildlife():
@@ -53,40 +53,34 @@ def get_single_wildlife_type(id):
 
 
 def get_wildlife_by_park_id(park_id):
-    """A function that takes in one parameter and used to retrieve information about wildlife in a specific park."""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
+    """getting all wildlife in a specific park"""
 
-        db_cursor.execute("""
+    sql = """
         SELECT
-        w.id,
-        w.name,
-		w.information,
-		w.wildlife_group_id,
-		w.image
+            w.id,
+            w.name,
+            w.information,
+            w.wildlife_group_id,
+            w.image
         FROM Park_Wildlife pw
         JOIN Wildlife w
             ON pw.wildlife_id = w.id
         WHERE pw.park_id = ?
 		ORDER BY w.name ASC;
-        """, (park_id, ))
+    """
 
-        all_wildlife = []
+    all_wildlife = []
 
-        dataset = db_cursor.fetchall()
+    dataset = get_all_by_param(sql, park_id)
+    if not dataset:
+        return []
+    for row in dataset:
+        print(row)
+        wildlife = Wildlife(row['id'], row['name'], row['information'],
+                            row['wildlife_group_id'], row['image'])
 
-        if not dataset:
-            return []
-
-        if len(dataset) > 0:
-            for row in dataset:
-                wildlife = Wildlife(row['id'], row['name'], row['information'],
-                                    row['wildlife_group_id'], row['image'])
-
-                result = wildlife.__dict__
-                all_wildlife.append(result)
-
+        result = wildlife.__dict__
+        all_wildlife.append(result)
     return all_wildlife
 
 def create_wildlife(new_wildlife):
@@ -109,21 +103,21 @@ def create_wildlife(new_wildlife):
     return new_wildlife
 
 
-def update_wildlife(id, new_order):
+def update_wildlife(id, new_wildlife):
     """iterates the list of wildlife until it finds the right one, and then replaces it with what the client sent as the replacement."""
-    with sqlite3.connect("./kneeldiamonds.sqlite3") as conn:
+    with sqlite3.connect("./national_park.sqlite3") as conn:
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-        UPDATE Orders
+        UPDATE Wildlife
             SET
-                metal_id = ?,
-                size_id = ?,
-                style_id = ?,
-                timestamp = ?
+                name = ?,
+                information = ?,
+                wildlife_group_id = ?,
+                image = ?
         WHERE id = ?
-        """, (new_order['metal_id'], new_order['size_id'],
-              new_order['style_id'], new_order['timestamp'], id, ))
+        """, (new_wildlife['name'], new_wildlife['information'],
+              new_wildlife['wildlife_group_id'], new_wildlife['image'], id, ))
 
         # Were any rows affected?
         # Did the client send an `id` that exists?

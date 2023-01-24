@@ -8,20 +8,15 @@ def retrieve(resource, id):
     """For GET requests to a single resource"""
     return method_mapper[resource]["single"](id)
 
-def create(resource):
+def create(resource, post_body):
     """For POST requests to a collection"""
-    return method_mapper[resource]["post"] ()
+    return method_mapper[resource]["post"](post_body)
 
-def update(resource, id):
+def update(resource, id, post_body):
     """For PUT requests to a single resource"""
-    return method_mapper[resource]["put"](id)
+    return method_mapper[resource]["put"](id, post_body)
 
 def delete(resource, id):
     """For DELETE requests to a single resource"""
     return method_mapper[resource]["delete"](id)
 
-    "wildlife": {
-        "all": get_all_wildlife,
-        "single": get_single_wildlife_type,
-        "park_id": get_wildlife_by_park_id
-    }

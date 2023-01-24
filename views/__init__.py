@@ -1,4 +1,4 @@
-from .wildlife_views import get_all_wildlife, get_single_wildlife_type, get_wildlife_by_park_id, create_wildlife
+from .wildlife_views import get_all_wildlife, get_single_wildlife_type, get_wildlife_by_park_id, create_wildlife, update_wildlife
 from .natural_attractions_views import get_all_natural_attractions, get_single_natural_attraction
 from .amenity_views import get_all_amenities, get_all_amenity_types, get_amenity_by_id, get_amenity_type_by_id
 from .park_views import get_all_parks, get_single_park
