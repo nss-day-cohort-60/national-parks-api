@@ -31,7 +31,7 @@ def get_all_campgrounds():
 
     return campgrounds
 
-def get_single_campground():
+def get_single_campground(id):
     """Finds the matching campground dictionary for the specified campground id
 
     Args:
