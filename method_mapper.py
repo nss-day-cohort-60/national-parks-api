@@ -1,6 +1,6 @@
 from views import get_all_amenities, get_all_amenity_types, get_amenity_by_id, get_amenity_type_by_id
-from views import get_all_blogs, get_single_blog, get_blogs_by_user_id, get_blogs_by_park_id
 from views import get_all_users, get_all_user_favorites, get_user_by_id, get_user_favorite_by_id
+from views import get_all_blogs, get_single_blog, get_blogs_by_user_id, get_blogs_by_park_id, create_blog, update_blog
 
 method_mapper = {
     "amenities": {
@@ -29,6 +29,11 @@ method_mapper = {
         "single": get_user_favorite_by_id,
         "post": "",
         "put": "",
+    "blogs": {
+        "all": get_all_blogs,
+        "single": get_single_blog,
+        "post": create_blog,
+        "put": update_blog,
         "delete": ""
     }
 }
