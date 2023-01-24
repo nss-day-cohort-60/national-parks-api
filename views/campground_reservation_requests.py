@@ -45,7 +45,7 @@ def get_single_reservation(id):
                 res.user_id
             FROM camping_reservations res
             WHERE res.id = ?
-            """, ( id, )
+            """
 
     data = get_single(sql, id)
 
