@@ -13,15 +13,16 @@ def get_all_blogs():
         SELECT
             b.id,
             b.title,
+            b.post_body,
             b.date_created,
             b.user_id,
             b.park_id,
-            b.url
-        FROM blogs b
-        JOIN blog_photos ON
-        blogs.id = blog_id
-        JOIN photos ON
-        photos.id = blog_photos.photo_id
+            p.url as photo_url
+        FROM Blogs b
+        JOIN Blog_Photos ON
+        b.id = Blog_Photos.blog_id
+        JOIN Photos p ON
+        p.id = Blog_photos.photo_id
         """
 
     blogs = []
@@ -29,42 +30,43 @@ def get_all_blogs():
     dataset = get_all(sql)
 
     for row in dataset:
-        blog = Blog(row['id'],row['title'],row['date_created'],row['user_id'],row['park_id'])
+        blog = Blog(row['id'],row['title'],row['post_body'],row['date_created'],row['user_id'],row['park_id'], row['photo_url'])
         blogs.append(blog.__dict__)
 
     return blogs
 
 
 def get_single_blog(id):
-    """_summary_
+    """Returns a single blog dictionary
 
     Args:
-        id (_type_): _description_
+        id (int): primary key for the blog being requested
 
     Returns:
-        _type_: _description_
-    """    """Returns single blog dictionary by accepting its id as a parameter"""
+        dict: the blog dictionary in question
+    """
 
     sql="""
         SELECT
             b.id,
             b.title,
+            b.post_body,
             b.date_created,
             b.user_id,
             b.park_id,
-            b.url
-        FROM blogs b
-        WHERE blogs.id = ?
-        JOIN blog_photos ON
-        blogs.id = blog_id
-        JOIN photos ON
-        photos.id = blog_photos.photo_id
+            p.url as photo_url
+        FROM Blogs b
+        JOIN Blog_Photos bp ON
+        b.id = bp.blog_id
+        JOIN photos p ON
+        p.id = bp.photo_id
+        WHERE b.id = ?
         """
 
     data = get_single(sql, id)
 
-    blog = Blog(data['id'], data['title'], data['date_created'],
-            data['user_id'], data['park_id'])
+    blog = Blog(data['id'], data['title'], data['post_body'], data['date_created'],
+            data['user_id'], data['park_id'], data['photo_url'])
 
     return blog.__dict__
 
