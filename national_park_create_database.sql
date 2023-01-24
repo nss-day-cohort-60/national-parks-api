@@ -79,9 +79,9 @@ CREATE TABLE `Camping_Reservations` (
   `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   `start_date` DATETIME,
   `end_date` DATETIME,
-  `campround_id` INTEGER NOT NULL,
+  `campground_id` INTEGER NOT NULL,
   `user_id` INTEGER NOT NULL,
-  FOREIGN KEY (`campround_id`) REFERENCES `Campgrounds` (`id`),
+  FOREIGN KEY (`campground_id`) REFERENCES `Campgrounds` (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`)
 );
 
