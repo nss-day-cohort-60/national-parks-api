@@ -110,7 +110,7 @@ def create_wildlife(new_wildlife):
 
 
 def update_wildlife(id, new_order):
-    """iterates the list of orders until it finds the right one, and then replaces it with what the client sent as the replacement."""
+    """iterates the list of wildlife until it finds the right one, and then replaces it with what the client sent as the replacement."""
     with sqlite3.connect("./kneeldiamonds.sqlite3") as conn:
         db_cursor = conn.cursor()
 
