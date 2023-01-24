@@ -48,6 +48,19 @@ def get_user_by_id(id):
 
     return user.__dict__
 
+def create_user(new_user):
+    """With posts a new dictionary of class User to the database, given all User properties
+    
+    new_user: first_name: "", last_name: "", email: "", password: "", isRanger: bool
+
+    """
+    
+
+
+    return new_user
+
+
+
 def get_all_user_favorites():
     """fetches list of amenity types from amenities table"""
     sql = (
