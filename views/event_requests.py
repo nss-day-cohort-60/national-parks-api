@@ -1,33 +1,29 @@
-import sqlite3
 from models import Event
+from sql_helper import get_all, get_single
 
 def get_all_events():
     """Gets all events
     Returns:
         list: All event dictionaries"""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
+    sql = """
+            SELECT
+                e.id,
+                e.name,
+                e.description,
+                e.start_date,
+                e.park_id
+            FROM event e
+            """
 
-        db_cursor.execute("""
-        SELECT
-            e.id,
-            e.name,
-            e.description,
-            e.start_date,
-            e.park_id
-        FROM event e
-        """)
+    events = []
 
-        events = []
+    dataset = get_all(sql)
 
-        dataset = db_cursor.fetchall()
+    for row in dataset:
 
-        for row in dataset:
+        event = Event(row['id'], row['name'], row['description'], row['start_date'], row['park_id'])
 
-            event = Event(row['id'], row['name'], row['description'], row['start_date'], row['park_id'])
-
-            events.append(event.__dict__)
+        events.append(event.__dict__)
 
     return events
 
@@ -40,24 +36,20 @@ def get_single_event(id):
     Returns:
         dict: event dictionary
     """
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
+    sql = """
+            SELECT
+            e.id,
+                e.name,
+                e.description,
+                e.start_date,
+                e.park_id
+            FROM event e
+            WHERE e.id = ?
+            """
 
-        db_cursor.execute("""
-        SELECT
-           e.id,
-            e.name,
-            e.description,
-            e.start_date,
-            e.park_id
-        FROM event e
-        WHERE e.id = ?
-        """, ( id, ))
+    data = get_single(sql, id)
 
-        data = db_cursor.fetchone()
-
-        event = Event(data['id'], data['name'], data['description'], data['start_date'], data['park_id'])
+    event = Event(data['id'], data['name'], data['description'], data['start_date'], data['park_id'])
 
     return event.__dict__
     
