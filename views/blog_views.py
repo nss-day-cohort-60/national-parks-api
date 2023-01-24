@@ -19,10 +19,10 @@ def get_all_blogs():
             b.park_id,
             p.url as photo_url
         FROM Blogs b
-        JOIN Blog_Photos ON
-        b.id = Blog_Photos.blog_id
-        JOIN Photos p ON
-        p.id = Blog_photos.photo_id
+        LEFT JOIN Blog_Photos bp ON
+        b.id = bp.blog_id
+        LEFT JOIN Photos p ON
+        p.id = bp.photo_id
         """
 
     blogs = []
