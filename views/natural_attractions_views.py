@@ -24,7 +24,6 @@ def get_all_natural_attractions():
 
     return natural_attractions
 
-
 def get_single_natural_attraction(id):
     """A function that retrieves a single natural_attraction based on the given id"""
     sql = (
