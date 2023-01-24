@@ -4,7 +4,7 @@ from models import Registration
 def get_all_registration():
     """Gets all event registration
     Returns:
-        dict: All event registration dictionaries"""
+        list: All event registration dictionaries"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -29,14 +29,14 @@ def get_all_registration():
 
     return registrations
 
-def get_single_registration():
+def get_single_registration(id):
     """Finds the matching event registration dictionary for the specified event registration id
 
     Args:
         id (int): event registration id
 
     Returns:
-        object: event registration dictionary
+        dict: event registration dictionary
     """
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row

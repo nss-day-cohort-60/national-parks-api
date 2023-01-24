@@ -4,7 +4,7 @@ from models import Campground
 def get_all_campgrounds():
     """Gets all campgrounds
     Returns:
-        dict: All campground dictionaries"""
+        list: All campground dictionaries"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -38,7 +38,7 @@ def get_single_campground(id):
         id (int): campground id
 
     Returns:
-        object: campground dictionary
+        dict: campground dictionary
     """
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row

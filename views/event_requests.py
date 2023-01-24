@@ -4,7 +4,7 @@ from models import Event
 def get_all_events():
     """Gets all events
     Returns:
-        dict: All event dictionaries"""
+        list: All event dictionaries"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -31,14 +31,14 @@ def get_all_events():
 
     return events
 
-def get_single_event():
+def get_single_event(id):
     """Finds the matching event dictionary for the specified event id
 
     Args:
         id (int): event id
 
     Returns:
-        object: event dictionary
+        dict: event dictionary
     """
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row

@@ -4,7 +4,7 @@ from models import Reservation
 def get_all_reservations():
     """Gets all campground reservations
     Returns:
-        dict: All campground reservation dictionaries"""
+        list: All campground reservation dictionaries"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -31,14 +31,14 @@ def get_all_reservations():
 
     return reservations
 
-def get_single_reservation():
+def get_single_reservation(id):
     """Finds the matching reservation dictionary for the specified reservation id
 
     Args:
         id (int): reservation id
 
     Returns:
-        object: reservation dictionary
+        dict: reservation dictionary
     """
     with sqlite3.connect("./national_park.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
