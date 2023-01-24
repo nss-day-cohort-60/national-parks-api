@@ -43,6 +43,42 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         self.wfile.write(json.dumps(response).encode())
 
+    def do_POST(self):
+        """Handles POST requests to the server"""
+
+        self._set_headers(201)
+        content_len = int(self.headers.get('content-length', 0))
+        post_body = self.rfile.read(content_len)
+
+        post_body = json.loads(post_body)
+
+        (resource, id) = self.parse_url(self.path)
+
+        new_resource = None
+        new_resource = create(resource, post_body)
+
+        self.wfile.write(json.dumps(new_resource).encode())
+
+    def do_PUT(self):
+        """Handles PUT requests to the server
+        """
+        self._set_headers(204)
+        content_len = int(self.headers.get('content-length', 0))
+        post_body = self.rfile.read(content_len)
+        post_body = json.loads(post_body)
+
+        (resource, id) = self.parse_url(self.path)
+        
+        update(resource, id, post_body)
+
+    def do_DELETE(self):
+        """Deletes dictionary from database
+        """
+        (resource, id) = self.parse_url(self.path)
+        self._set_headers(405)
+
+        delete(resource, id)
+
     def _set_headers(self, status):
         # Notice this Docstring also includes information about the arguments passed to the function
         """Sets the status code, Content-Type and Access-Control-Allow-Origin
