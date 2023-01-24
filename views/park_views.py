@@ -13,7 +13,7 @@ def get_all_parks():
             p.city,
             p.state,
             p.latitude,
-            p.longitude,
+            p.longitude
         FROM parks p
         """
 
@@ -37,7 +37,7 @@ def get_single_park(id):
             p.city,
             p.state,
             p.latitude,
-            p.longitude,
+            p.longitude
         FROM parks p
         WHERE p.id = ?
         """

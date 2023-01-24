@@ -11,7 +11,7 @@ def get_all_photos():
             p.id,
             p.url,
             p.user_id,
-            p.park_id,
+            p.park_id
         FROM photos p
         """
 
@@ -40,7 +40,7 @@ def get_single_photo(id):
             p.id,
             p.url,
             p.user_id,
-            p.park_id,
+            p.park_id
         FROM photos p
         WHERE p.id = ?
         """
