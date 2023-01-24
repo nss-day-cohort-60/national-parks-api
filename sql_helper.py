@@ -33,7 +33,7 @@ def get_single(sql, id):
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
 
-        db_cursor.execute(sql, id)
+        db_cursor.execute(sql, ( id, ))
 
         data = db_cursor.fetchone()
 
