@@ -1,13 +1,11 @@
-import sqlite3
 from models import Parks
+from sql_helper import get_all, get_single
 
 def get_all_parks():
-    """getting all of the parks and their data"""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
+    """Gets all parks
+        Returns: a list of all park dictionaries"""
 
-        db_cursor.execute("""
+    sql= """
         SELECT
             p.id,
             p.name,
@@ -15,27 +13,23 @@ def get_all_parks():
             p.city,
             p.state,
             p.latitude,
-            p.longitude,
+            p.longitude
         FROM parks p
-        """)
+        """
 
-        parks = []
+    parks = []
 
-        dataset = db_cursor.fetchall()
+    dataset = get_all(sql)
 
-        for row in dataset:
-            park = Parks(row['id'], row['name'], row['history'], row['city'], row['state'], row['latitude'], row['longitude'])
-            parks.append(park.__dict__)
+    for row in dataset:
+        park = Parks(row['id'], row['name'], row['history'], row['city'], row['state'], row['latitude'], row['longitude'])
+        parks.append(park.__dict__)
         
-        return parks
+    return parks
 
 def get_single_park(id):
-    """getting one park by id"""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
+    """finds the matching park dictionary for the specified park id"""
+    sql = """
         SELECT
             p.id,
             p.name,
@@ -43,17 +37,13 @@ def get_single_park(id):
             p.city,
             p.state,
             p.latitude,
-            p.longitude,
+            p.longitude
         FROM parks p
         WHERE p.id = ?
-        """, ( id, ))
+        """
 
-        parks = []
+    data = get_single(sql, id)
 
-        data = db_cursor.fetchone()
+    park = Parks(data['id'], data['name'], data['history'], data['city'], data['state'], data['latitude'], data['longitude'])
 
-        park = Parks(data['id'], data['name'], data['history'], data['city'], data['state'], data['latitude'], data['longitude'])
-
-        parks.append(park.__dict__)
-
-        return parks
+    return park.__dict__
