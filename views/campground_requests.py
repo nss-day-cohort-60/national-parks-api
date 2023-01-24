@@ -1,15 +1,12 @@
-import sqlite3
 from models import Campground
+from sql_helper import get_all, get_single
 
-def get_all_campgrounds():
+def get_all_campgrounds(sql):
     """Gets all campgrounds
     Returns:
         list: All campground dictionaries"""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
+    
+    sql = """
         SELECT
             c.id,
             c.name,
@@ -17,17 +14,17 @@ def get_all_campgrounds():
             c.available_sites,
             c.description
         FROM Campground c
-        """)
+        """ 
 
-        campgrounds = []
+    campgrounds = []
 
-        dataset = db_cursor.fetchall()
+    dataset = get_all(sql)
 
-        for row in dataset:
+    for row in dataset:
 
-            campground = Campground(row['id'], row['name'], row['park_id'], row['available_sites'], row['description'])
+        campground = Campground(row['id'], row['name'], row['park_id'], row['available_sites'], row['description'])
 
-            campgrounds.append(campground.__dict__)
+        campgrounds.append(campground.__dict__)
 
     return campgrounds
 
@@ -40,24 +37,21 @@ def get_single_campground(id):
     Returns:
         dict: campground dictionary
     """
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
 
-        db_cursor.execute("""
-        SELECT
+    sql = """
+            SELECT
             c.id,
             c.start_date,
             c.end_date,
             campground_id,
             user_id
-        FROM campground c
-        WHERE c.id = ?
-        """, ( id, ))
+            FROM campground c
+            WHERE c.id = ?
+            """
 
-        data = db_cursor.fetchone()
+    data = get_single(sql, id)
 
-        campground = Campground(data['id'], data['start_date'], data['end_date'], data['campground_id'], data['user_id'])
+    campground = Campground(data['id'], data['start_date'], data['end_date'], data['campground_id'], data['user_id'])
 
     return campground.__dict__
     
