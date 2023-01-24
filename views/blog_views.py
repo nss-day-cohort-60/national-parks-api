@@ -1,3 +1,4 @@
+import sqlite3
 from models import Blog
 from sql_helper import get_all, get_single
 
@@ -12,15 +13,16 @@ def get_all_blogs():
         SELECT
             b.id,
             b.title,
+            b.post_body,
             b.date_created,
             b.user_id,
             b.park_id,
-            b.url
-        FROM blogs b
-        JOIN blog_photos ON
-        blogs.id = blog_id
-        JOIN photos ON
-        photos.id = blog_photos.photo_id
+            p.url as photo_url
+        FROM Blogs b
+        LEFT JOIN Blog_Photos bp ON
+        b.id = bp.blog_id
+        LEFT JOIN Photos p ON
+        p.id = bp.photo_id
         """
 
     blogs = []
@@ -28,41 +30,43 @@ def get_all_blogs():
     dataset = get_all(sql)
 
     for row in dataset:
-        blog = Blog(row['id'],row['title'],row['date_created'],row['user_id'],row['park_id'])
+        blog = Blog(row['id'],row['title'],row['post_body'],row['date_created'],row['user_id'],row['park_id'], row['photo_url'])
         blogs.append(blog.__dict__)
+
     return blogs
 
 
 def get_single_blog(id):
-    """_summary_
+    """Returns a single blog dictionary
 
     Args:
-        id (_type_): _description_
+        id (int): primary key for the blog being requested
 
     Returns:
-        _type_: _description_
-    """    """Returns single blog dictionary by accepting its id as a parameter"""
+        dict: the blog dictionary in question
+    """
 
     sql="""
         SELECT
             b.id,
             b.title,
+            b.post_body,
             b.date_created,
             b.user_id,
             b.park_id,
-            b.url
-        FROM blogs b
-        WHERE id = ?
-        JOIN blog_photos ON
-        blogs.id = blog_id
-        JOIN photos ON
-        photos.id = blog_photos.photo_id
+            p.url as photo_url
+        FROM Blogs b
+        JOIN Blog_Photos bp ON
+        b.id = bp.blog_id
+        JOIN photos p ON
+        p.id = bp.photo_id
+        WHERE b.id = ?
         """
 
     data = get_single(sql, id)
 
-    blog = Blog(data['id'], data['title'], data['date_created'],
-            data['user_id'], data['park_id'])
+    blog = Blog(data['id'], data['title'], data['post_body'], data['date_created'],
+            data['user_id'], data['park_id'], data['photo_url'])
 
     return blog.__dict__
 
@@ -133,3 +137,72 @@ def get_blogs_by_park_id(park_id):
         blog = Blog(row['id'],row['title'],row['date_created'],row['user_id'],row['park_id'])
         blogs.append(blog.__dict__)
     return blogs
+
+def create_blog(new_blog, new_photo):
+    """Creates new blog dictionary"""
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        INSERT INTO Blogs
+            ( title, post_body, date_created, user_id, park_id )
+        VALUES
+            ( ?, ?, ?, ?, ?);
+        """, (new_blog['title'], new_blog['post_body'],
+            new_blog['date_created'], new_blog['user_id'],
+            new_blog['park_id'], ))
+
+        new_blog_id = db_cursor.lastrowid
+        new_blog['id'] = new_blog_id
+
+        db_cursor.execute("""
+        INSERT INTO Photos
+            ( url, user_id, park_id )
+        VALUES
+            ( ?, ?, ? );
+        """, (new_photo['url'], new_photo['user_id'],
+            new_photo['park_id'] ))
+
+        new_photo_id = db_cursor.lastrowid
+        new_photo['id'] = new_photo_id
+
+        new_blog_photo = {}
+
+        db_cursor.execute("""
+        INSERT INTO blog_photos
+            ( blog_id, photo_id )
+        VALUES
+            ( ?, ?, ? );
+        """, (new_blog_photo['new_blog_id'], new_blog_photo['new_photo_id'] ))
+
+    return new_blog
+
+
+#not done, good luck figuring out how to also update photos
+def update_blog(id, new_blog):
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        UPDATE Blog
+            SET
+                title = ?,
+                post_body = ?,
+                date_created = ?,
+                user_id = ?,
+                park_id = ?
+        WHERE id = ?
+        """, (new_blog['title'], new_blog['post_body'],
+              new_blog['date_created'], new_blog['user_id'],
+              new_blog['park_id'], id, ))
+
+        # Were any rows affected?
+        # Did the client send an `id` that exists?
+        rows_affected = db_cursor.rowcount
+
+    if rows_affected == 0:
+        # Forces 404 response by main module
+        return False
+    else:
+        # Forces 204 response by main module
+        return True

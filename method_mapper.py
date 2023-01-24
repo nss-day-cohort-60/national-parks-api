@@ -1,5 +1,5 @@
 from views import get_all_amenities, get_all_amenity_types, get_amenity_by_id, get_amenity_type_by_id
-from views import get_all_blogs, get_single_blog, get_blogs_by_user_id, get_blogs_by_park_id
+from views import get_all_blogs, get_single_blog, get_blogs_by_user_id, get_blogs_by_park_id, create_blog, update_blog
 from views import get_all_campgrounds, get_single_campground
 from views import get_all_reservations, get_single_reservation
 from views import get_all_events, get_single_event
@@ -38,6 +38,13 @@ method_mapper = {
         "single": get_single_event,
         "post": "",
         "put": "",
+        "delete": ""
+    },
+    "blogs": {
+        "all": get_all_blogs,
+        "single": get_single_blog,
+        "post": create_blog,
+        "put": update_blog,
         "delete": ""
     }
 }
