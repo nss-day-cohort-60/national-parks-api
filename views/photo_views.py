@@ -1,38 +1,41 @@
-import sqlite3
 from models import Photos
+from sql_helper import get_all, get_single
 
 def get_all_photos():
-    "getting all of the photos"
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
+    """Gets all photos
+    Returns:
+        list: All photo dictionaries"""
 
-        db_cursor.execute("""
+    sql = """
         SELECT
             p.id,
             p.url,
             p.user_id,
             p.park_id,
         FROM photos p
-        """)
+        """
 
-        photos = []
+    photos = []
 
-        dataset = db_cursor.fetchall()
+    dataset = get_all(sql)
 
-        for row in dataset:
-            photo = Photos(row['id'], row['url'], row['user_id'], row['park_id'])
-            photos.append(photo.__dict__)
-        
-        return photos
+    for row in dataset:
+        photo = Photos(row['id'], row['url'], row['user_id'], row['park_id'])
+        photos.append(photo.__dict__)
+
+    return photos
 
 def get_single_photo(id):
-    """to get a single photo by id"""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
+    """Finds the matching photo dictionary for the specified photo id
 
-        db_cursor.execute("""
+    Args:
+        id (int): photo id
+
+    Returns:
+        dict: photo dictionary
+    """
+
+    sql = """
         SELECT
             p.id,
             p.url,
@@ -40,15 +43,39 @@ def get_single_photo(id):
             p.park_id,
         FROM photos p
         WHERE p.id = ?
-        """, ( id, ))
+        """
 
-        photos = []
+    data = get_single(sql, id)
 
-        data = db_cursor.fetchone()
+    photo = Photos(data['id'], data['url'], data['user_id'], data['park_id'])
 
-        photo = Photos(data['id'], data['url'], data['user_id'], data['park_id'])
+    return photo.__dict__
 
-        photos.append(photo.__dict__)
+def get_photos_by_user_id(user_id):
+    """Accepts user_id as a parameter, then sends it in the sql variable as a parameter to get_all
 
-        return photos
+    Args:
+        user_id (int): foreign key to show each user their own uploaded images
 
+    Returns:
+        list: of all photos associated with the user_id foreign key
+    """
+
+    sql=("""
+       SELECT
+            p.id,
+            p.url,
+            p.user_id,
+            p.park_id,
+        FROM photos p
+        WHERE user_id = ?
+        """, ( user_id, ))
+
+    photos = []
+
+    dataset = get_all(sql)
+
+    for row in dataset:
+        photo = Photos(row['id'], row['url'], row['user_id'], row['park_id'])
+        photos.append(photo.__dict__)       
+    return photos
