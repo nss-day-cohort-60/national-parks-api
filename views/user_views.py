@@ -1,3 +1,4 @@
+import sqlite3
 from models import User, User_Favorite
 from sql_helper import get_all, get_single
 
@@ -50,16 +51,23 @@ def get_user_by_id(id):
 
 def create_user(new_user):
     """With posts a new dictionary of class User to the database, given all User properties
-    
+
     new_user: first_name: "", last_name: "", email: "", password: "", isRanger: bool
-
     """
-    
 
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        INSERT INTO Users
+            ( first_name, last_name, email, password, isRanger )
+        VALUES
+            ( ?, ?, ?, ?, ?);
+        """, ( new_user['first_name'], new_user['last_name'], new_user['email'], new_user['password'], new_user['isRanger'] ))
+
+        new_user['id'] = db_cursor.lastrowid
 
     return new_user
-
-
 
 def get_all_user_favorites():
     """fetches list of amenity types from amenities table"""
@@ -103,3 +111,23 @@ def get_user_favorite_by_id(id):
     favorite = User_Favorite(row["id"], row["type_id"], row["post_id"], row["user_id"])
 
     return favorite.__dict__
+
+def create_user_favorite(new_favorite):
+    """With posts a new dictionary of class User_Favorite to the database, given all properties
+
+    new_favorite: type_id: "", post_id: "", user_id: "", password: "", isRanger: bool
+    """
+
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        INSERT INTO User_Favorites
+            ( type_id, post_id, user_id )
+        VALUES
+            ( ?, ?, ? );
+        """, ( new_favorite['type_id'], new_favorite['post_id'], new_favorite['user_id'] ))
+
+        new_favorite['id'] = db_cursor.lastrowid
+
+    return new_favorite

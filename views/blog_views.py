@@ -138,7 +138,7 @@ def get_blogs_by_park_id(park_id):
         blogs.append(blog.__dict__)
     return blogs
 
-def create_blog(new_blog, new_photo):
+def create_blog(new_blog, new_photo = None):
     """Creates new blog dictionary"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         db_cursor = conn.cursor()
@@ -192,9 +192,7 @@ def update_blog(id, new_blog):
                 user_id = ?,
                 park_id = ?
         WHERE id = ?
-        """, (new_blog['title'], new_blog['post_body'],
-              new_blog['date_created'], new_blog['user_id'],
-              new_blog['park_id'], id, ))
+        """, (new_blog['title'], new_blog['post_body'], new_blog['date_created'], new_blog['user_id'], new_blog['park_id'], id, ))
 
         # Were any rows affected?
         # Did the client send an `id` that exists?
