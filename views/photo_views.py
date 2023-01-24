@@ -66,7 +66,7 @@ def get_photos_by_user_id(user_id):
             p.id,
             p.url,
             p.user_id,
-            p.park_id,
+            p.park_id
         FROM photos p
         WHERE user_id = ?
         """, ( user_id, ))
