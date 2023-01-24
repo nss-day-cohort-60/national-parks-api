@@ -88,3 +88,49 @@ def get_wildlife_by_park_id(park_id):
                 all_wildlife.append(result)
 
     return all_wildlife
+
+def create_wildlife(new_wildlife):
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        INSERT INTO Wildlife
+            ( name, information, wildlife_group_id, image)
+        VALUES
+            ( ?, ?, ?, ?);
+        """, (new_wildlife['name'], new_wildlife['information'],
+              new_wildlife['wildlife_group_id'], new_wildlife['image']))
+
+        id = db_cursor.lastrowid
+
+        # Add the `id` property to the wildlife dictionary
+        new_wildlife['id'] = id
+
+    return new_wildlife
+
+
+def update_wildlife(id, new_order):
+    """iterates the list of orders until it finds the right one, and then replaces it with what the client sent as the replacement."""
+    with sqlite3.connect("./kneeldiamonds.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        UPDATE Orders
+            SET
+                metal_id = ?,
+                size_id = ?,
+                style_id = ?,
+                timestamp = ?
+        WHERE id = ?
+        """, (new_order['metal_id'], new_order['size_id'],
+              new_order['style_id'], new_order['timestamp'], id, ))
+
+        # Were any rows affected?
+        # Did the client send an `id` that exists?
+        rows_affected = db_cursor.rowcount
+
+    if rows_affected == 0:
+        # Forces 404 response by main module
+        return False
+        # Forces 204 response by main module
+    return True
