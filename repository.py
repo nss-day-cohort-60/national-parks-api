@@ -19,3 +19,9 @@ def update(resource, id):
 def delete(resource, id):
     """For DELETE requests to a single resource"""
     return method_mapper[resource]["delete"](id)
+
+    "wildlife": {
+        "all": get_all_wildlife,
+        "single": get_single_wildlife_type,
+        "park_id": get_wildlife_by_park_id
+    }
