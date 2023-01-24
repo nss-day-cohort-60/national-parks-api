@@ -2,7 +2,7 @@ from method_mapper import method_mapper
 
 def all(resource):
     """For GET requests to collection"""
-    return method_mapper[resource]["all"]
+    return method_mapper[resource]["all"]()
         
 def retrieve(resource, id):
     """For GET requests to a single resource"""
@@ -10,11 +10,11 @@ def retrieve(resource, id):
 
 def create(resource):
     """For POST requests to a collection"""
-    return method_mapper[resource]["post"]
+    return method_mapper[resource]["post"]()
 
 def update(resource, id):
     """For PUT requests to a single resource"""
-    return method_mapper[resource]["put"](id)
+    return method_mapper[resource]["put"](id)()
 
 def delete(resource, id):
     """For DELETE requests to a single resource"""
