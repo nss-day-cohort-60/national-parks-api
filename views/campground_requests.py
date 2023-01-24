@@ -1,7 +1,7 @@
 from models import Campground
 from sql_helper import get_all, get_single
 
-def get_all_campgrounds(sql):
+def get_all_campgrounds():
     """Gets all campgrounds
     Returns:
         list: All campground dictionaries"""
