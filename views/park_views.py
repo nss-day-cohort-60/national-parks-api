@@ -1,5 +1,5 @@
-import sqlite3
 from models import Parks
+import sqlite3
 
 def get_all_parks():
     """getting all of the parks and their data"""
