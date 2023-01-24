@@ -1,23 +1,21 @@
-def all():
+from method_mapper import method_mapper
+
+def all(resource):
     """For GET requests to collection"""
-    pass
-
-
-def retrieve():
+    return method_mapper[resource]["all"]
+        
+def retrieve(resource, id):
     """For GET requests to a single resource"""
-    pass
+    return method_mapper[resource]["single"](id)
 
-
-def create():
+def create(resource):
     """For POST requests to a collection"""
-    pass
+    return method_mapper[resource]["post"]
 
-
-def update():
+def update(resource, id):
     """For PUT requests to a single resource"""
-    pass
+    return method_mapper[resource]["put"](id)
 
-
-def delete():
+def delete(resource, id):
     """For DELETE requests to a single resource"""
-    pass
+    return method_mapper[resource]["delete"](id)
