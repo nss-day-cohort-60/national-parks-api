@@ -8,6 +8,13 @@ method_mapper = {
         "post": "",
         "put": "",
         "delete": ""
+    },
+    "blogs": {
+        "all": get_all_blogs,
+        "single": get_single_blog,
+        "post": "",
+        "put": "",
+        "delete": ""
     }
 }
 
