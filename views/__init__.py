@@ -3,5 +3,5 @@ from .natural_attractions_views import get_all_natural_attractions, get_single_n
 from .amenity_views import get_all_amenities, get_all_amenity_types, get_amenity_by_id, get_amenity_type_by_id
 from .park_views import get_all_parks, get_single_park
 from .photo_views import get_all_photos, get_single_photo
-from .blog_views import get_all_blogs, get_single_blog, get_blogs_by_user_id, get_blogs_by_park_id
+from .blog_views import get_all_blogs, get_single_blog, get_blogs_by_user_id, get_blogs_by_park_id, create_blog, update_blog
 from .user_views import get_all_users, get_user_by_id, get_user_favorite_by_id, get_all_user_favorites
