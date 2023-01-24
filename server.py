@@ -22,6 +22,27 @@ class HandleRequests(BaseHTTPRequestHandler):
             pass
         return (resource, pk)
 
+    def do_GET(self):
+        """Handles GET requests to the server
+        """
+        response = None
+        
+        (resource, id) = self.parse_url(self.path)
+        
+        if id is not None:
+            response = retrieve(resource, id)
+
+            if response is not None:
+                self._set_headers(200)
+            else:
+                self._set_headers(404)
+                response = { "message": f"{id} can not be found.  Please enter a valid resource id." }
+        else:
+            self._set_headers(200)
+            response = all(resource)
+
+        self.wfile.write(json.dumps(response).encode())
+
     def _set_headers(self, status):
         # Notice this Docstring also includes information about the arguments passed to the function
         """Sets the status code, Content-Type and Access-Control-Allow-Origin
