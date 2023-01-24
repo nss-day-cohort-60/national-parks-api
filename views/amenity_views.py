@@ -32,7 +32,7 @@ def get_amenity_type_by_id(id):
             a.type
         FROM Amenities a
         WHERE id = ?
-        """, (id, )
+        """
     )
 
     amenity = {}
@@ -75,7 +75,7 @@ def get_amenity_by_id(id):
             pa.park_id
         FROM Park_Amenities pa
         WHERE id = ?
-        """, (id, )
+        """
     )
 
     park_amenity = {}

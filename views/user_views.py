@@ -40,7 +40,7 @@ def get_user_by_id(id):
             u.isRanger
         FROM Users u
         WHERE id = ?
-        """, (id, )
+        """
     )
 
     user = {}
@@ -83,7 +83,7 @@ def get_user_favorite_by_id(id):
             uf.user_id
         FROM User_Favorites uf
         WHERE id = ?
-        """, (id, )
+        """
     )
 
     favorite = {}

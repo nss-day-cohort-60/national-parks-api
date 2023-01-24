@@ -33,7 +33,7 @@ def get_single_natural_attraction(id):
             n.name
         FROM Natural_Attractions n
         WHERE n.id = ?
-    """, (id, ))
+    """)
 
     data = get_single(sql, id)
     if not data:
