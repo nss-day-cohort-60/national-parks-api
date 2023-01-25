@@ -1,3 +1,4 @@
+import sqlite3
 from models import Amenity, ParkAmenity
 from sql_helper import get_all, get_single
 
@@ -82,3 +83,67 @@ def get_amenity_by_id(id):
     park_amenity = ParkAmenity(data["id"], data["name"], data["amenity_id"], data["park_id"])
 
     return park_amenity.__dict__
+
+def create_amenity_type(new_amenity_type):
+    """Posts a new dictionary of class Amenity to the database, given type property
+
+    new_amenity_type: type: ""
+    """
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        INSERT INTO Users
+            ( type )
+        VALUES
+            ( ?);
+        """, ( new_amenity_type['type'], ))
+
+        new_amenity_type['id'] = db_cursor.lastrowid
+
+    return new_amenity_type
+
+def create_park_amenity(new_park_amenity):
+    """Posts a new dictionary of class ParkAmenity to the database, given all properties
+
+    new_park_amenity: name: "" (nullable), amenity_id: (int), park_id: (int)
+    """
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        INSERT INTO Users
+            ( name, amenity_id, park_id )
+        VALUES
+            ( ?, ?, ?);
+        """, ( new_park_amenity['name'], new_park_amenity['amenity_id'], new_park_amenity['park_id'] ))
+
+        new_park_amenity['id'] = db_cursor.lastrowid
+
+    return new_park_amenity
+
+def delete_park_amenity(id):
+    """Deletes a park amenity from Park_Amenities database table, given an id
+
+    Args: id (int)
+    """
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM Park_Amenities
+        WHERE id = ?
+        """, ( id ))
+
+def delete_amenity_type(id):
+    """Deletes an amenity type from Amenities database table, given an id
+
+    Args: id (int)
+    """
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM Amenities
+        WHERE id = ?
+        """, ( id ))

@@ -132,11 +132,10 @@ def create_user_favorite(new_favorite):
 
     return new_favorite
 
-def delete_user_favorite(post_body):
-    """Deletes a new dictionary of class UserFavorite to the database, given all properties
+def delete_user(id):
+    """Deletes a dictionary of class User from the database, given an id
 
-    Args:
-            post_body: type_id: int, post_id: int, user_id: int
+    Args: id (int)
     """
 
     with sqlite3.connect("./national_park.sqlite3") as conn:
@@ -144,5 +143,19 @@ def delete_user_favorite(post_body):
 
         db_cursor.execute("""
         DELETE FROM User_Favorites
-        WHERE type_id = ? AND post_id = ? AND user_id = ? )
-        """, ( post_body['type_id'], post_body['post_id'], post_body['user_id'] ))
+        WHERE id = ?
+        """, ( id ))
+
+def delete_user_favorite(id):
+    """Deletes a dictionary of class UserFavorite from the database, given an id
+
+    Args: id (int)
+    """
+
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM User_Favorites
+        WHERE id = ?
+        """, ( id ))
