@@ -169,7 +169,7 @@ def update_blog(id, new_blog):
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-        UPDATE Blog
+        UPDATE Blogs
             SET
                 title = ?,
                 post_body = ?,
@@ -189,3 +189,12 @@ def update_blog(id, new_blog):
     else:
         # Forces 204 response by main module
         return True
+
+def delete_blog(id):
+
+    sql = """
+    DELETE FROM Blogs
+    WHERE id = ?
+    """
+
+    get_single(sql, id)
