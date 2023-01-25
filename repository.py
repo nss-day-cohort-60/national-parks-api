@@ -6,7 +6,12 @@ def all(resource):
         
 def retrieve(resource, id):
     """For GET requests to a single resource"""
-    return method_mapper[resource]["single"](id)
+    if isinstance(id, dict):
+        parameter = list(id.keys())[0]
+        value = list(id.values())[0][0]
+        return  method_mapper[resource][parameter](value)
+    else:
+        return method_mapper[resource]["single"](id)
 
 def create(resource, post_body):
     """For POST requests to a collection"""
@@ -19,4 +24,4 @@ def update(resource, id, post_body):
 def delete(resource, id):
     """For DELETE requests to a single resource"""
     return method_mapper[resource]["delete"](id)
-
+    

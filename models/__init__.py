@@ -11,3 +11,4 @@ from .user_favorite import User_Favorite
 from .blog import Blog
 from .parks import Parks
 from .photos import Photos
+from .park_natural_attraction import Park_Natural_Attraction

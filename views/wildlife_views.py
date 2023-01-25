@@ -128,3 +128,13 @@ def update_wildlife(id, new_wildlife):
         return False
         # Forces 204 response by main module
     return True
+
+def delete_wildlife(id):
+    """remove wildlife dictionary from the list"""
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM Wildlife
+        WHERE id = ?
+        """, (id, ))
