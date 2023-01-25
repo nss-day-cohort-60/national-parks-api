@@ -1,6 +1,6 @@
 import sqlite3
 from models import User, UserFavorite
-from sql_helper import get_all, get_single
+from sql_helper import get_all, get_single, get_all_by_param
 
 def get_all_users():
     """fetches list of amenity types from amenities table"""
@@ -45,6 +45,28 @@ def get_user_by_id(id):
 
     user = {}
     row = get_single(sql, id)
+    user = User(row["id"], row["first_name"], row["last_name"], row["email"], row["password"], row["isRanger"])
+
+    return user.__dict__
+
+def get_user_by_email(email):
+    """fetches list of amenity types from amenities table"""
+    sql = (
+        """
+        SELECT
+            u.id,
+            u.first_name,
+            u.last_name,
+            u.email,
+            u.password,
+            u.isRanger
+        FROM Users u
+        WHERE email = ?
+        """
+    )
+
+    user = {}
+    row = get_all_by_param(sql, email)[0]
     user = User(row["id"], row["first_name"], row["last_name"], row["email"], row["password"], row["isRanger"])
 
     return user.__dict__
