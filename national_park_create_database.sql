@@ -109,7 +109,6 @@ CREATE TABLE `Blogs` (
   `date_created` DATETIME,
   `user_id` INTEGER NOT NULL,
   `park_id` INTEGER NOT NULL,
-  `photo_id` INTEGER NOT NULL,
   FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`),
   FOREIGN KEY (`park_id`) REFERENCES `Parks` (`id`)
 );
