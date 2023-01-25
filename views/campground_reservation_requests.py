@@ -1,6 +1,6 @@
 import sqlite3
 from models import Reservation
-from sql_helper import get_all, get_single
+from sql_helper import get_all, get_single, create_resource
 
 def get_all_reservations():
     """Gets all campground reservations
@@ -63,20 +63,17 @@ def create_reservation(new_reservation):
     Returns:
         dictionary: Returns the reservation dictionary with a reservation id
     """
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
+    sql = """
         INSERT INTO camping_reservations
             ( start_date, end_date, campround_id, user_id)
         VALUES
             ( ?, ?, ?, ? );
-        """, (new_reservation['start_date'], new_reservation['end_date'], new_reservation['campground_id'], new_reservation['user_id'], ))
-        
-        id = db_cursor.lastrowid
-
-        new_reservation['id'] = id
+        """
     
+    sql_values = (new_reservation['start_date'], new_reservation['end_date'], new_reservation['campground_id'], new_reservation['user_id'])
+        
+    create_resource(sql, sql_values, new_reservation)
+
     return new_reservation
 
 

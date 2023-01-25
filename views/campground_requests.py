@@ -1,6 +1,6 @@
 import sqlite3
 from models import Campground
-from sql_helper import get_all, get_single
+from sql_helper import get_all, get_single, create_resource
 
 def get_all_campgrounds():
     """Gets all campgrounds
@@ -65,19 +65,16 @@ def create_campground(new_campground):
     Returns:
         dictionary: Returns the campground dictionary with a campground id
     """
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
+    sql = """
         INSERT INTO Campgrounds
             ( name, park_id, available_sites, description)
         VALUES
             ( ?, ?, ?, ? );
-        """, (new_campground['name'], new_campground['park_id'], new_campground['available_sites'], new_campground['description'], ))
-        
-        id = db_cursor.lastrowid
+        """
+    
+    sql_values = (new_campground['name'], new_campground['park_id'], new_campground['available_sites'], new_campground['description'])
 
-        new_campground['id'] = id
+    create_resource(sql, sql_values, new_campground)
     
     return new_campground
 

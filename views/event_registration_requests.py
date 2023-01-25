@@ -1,6 +1,6 @@
 import sqlite3 
 from models import Registration
-from sql_helper import get_all, get_single
+from sql_helper import get_all, get_single, create_resource
 
 def get_all_registration():
     """Gets all event registration
@@ -59,19 +59,16 @@ def create_event_registration(new_event_registration):
     Returns:
         dictionary: Returns the event registration dictionary with an event registration id
     """
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
+    sql = """
         INSERT INTO event_registration
             (event_id, user_id)
         VALUES
             ( ?, ?);
-        """, (new_event_registration['event_id'], new_event_registration['user_id'], ))
-        
-        id = db_cursor.lastrowid
-
-        new_event_registration['id'] = id
+        """
+    
+    sql_values = (new_event_registration['event_id'], new_event_registration['user_id'])
+    
+    create_resource(sql, sql_values, new_event_registration)
     
     return new_event_registration
 

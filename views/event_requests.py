@@ -1,6 +1,6 @@
 import sqlite3
 from models import Event
-from sql_helper import get_all, get_single
+from sql_helper import get_all, get_single, create_resource
 
 def get_all_events():
     """Gets all events
@@ -63,19 +63,16 @@ def create_event(new_event):
     Returns:
         dictionary: Returns the event dictionary with an event id
     """
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
+    sql = """
         INSERT INTO events
             (name, description, start_date, park_id)
         VALUES
             ( ?, ?, ?, ?);
-        """, (new_event['name'], new_event['description'], new_event['start_date'], new_event['park_id'], ))
-        
-        id = db_cursor.lastrowid
-
-        new_event['id'] = id
+        """
+    
+    sql_values = (new_event['name'], new_event['description'], new_event['start_date'], new_event['park_id'])
+    
+    create_resource(sql, sql_values, new_event)
     
     return new_event
 
