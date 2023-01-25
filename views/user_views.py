@@ -50,7 +50,7 @@ def get_user_by_id(id):
     return user.__dict__
 
 def create_user(new_user):
-    """With posts a new dictionary of class User to the database, given all User properties
+    """Posts a new dictionary of class User to the database, given all User properties
 
     new_user: first_name: "", last_name: "", email: "", password: "", isRanger: bool
     """
@@ -113,7 +113,7 @@ def get_user_favorite_by_id(id):
     return favorite.__dict__
 
 def create_user_favorite(new_favorite):
-    """With posts a new dictionary of class UserFavorite to the database, given all properties
+    """Posts a new dictionary of class UserFavorite to the database, given all properties
 
     new_favorite: type_id: "", post_id: "", user_id: "", password: "", isRanger: bool
     """
@@ -131,3 +131,18 @@ def create_user_favorite(new_favorite):
         new_favorite['id'] = db_cursor.lastrowid
 
     return new_favorite
+
+def delete_user_favorite(post_body):
+    """Deletes a new dictionary of class UserFavorite to the database, given all properties
+
+    Args:
+            post_body: type_id: int, post_id: int, user_id: int
+    """
+
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM User_Favorites
+        WHERE type_id = ? AND post_id = ? AND user_id = ? )
+        """, ( post_body['type_id'], post_body['post_id'], post_body['user_id'] ))
