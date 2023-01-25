@@ -56,7 +56,6 @@ def create_resource(sql, sql_values, new_resource):
         new_resource['id'] = new_resource_id
 
     return new_resource
-
 def get_all_by_param(sql, id):
     with sqlite3.connect(db_name) as conn:
         conn.row_factory = sqlite3.Row
