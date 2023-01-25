@@ -48,3 +48,26 @@ def get_single_park(id):
     park = Parks(data['id'], data['name'], data['history'], data['city'], data['state'], data['latitude'], data['longitude'])
 
     return park.__dict__
+
+def create_park(park):
+    """creating a post request to create a park. Checks if all values are included in post, returns error"""
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+        # set: returns the unique values of list of values, wrapped in curly braces
+        # often convert to list: list(set(value_list))
+        if all(val for val in park.values()) and set(park.keys()) == {'url', 'user_id', 'park_id'}:
+            db_cursor.execute("""
+            INSERT INTO Parks
+                ( url, user_id, park_id )
+            VALUES
+                ( ?, ?, ?, ?, ?, ?);
+            """, (park['name'], park['history'], park['city'], park['state'], park['longitude'], park['latitude'] ))
+
+            id = db_cursor.lastrowid
+
+            park['id'] = id
+
+            return park
+        else:
+            return "missing information"
+
