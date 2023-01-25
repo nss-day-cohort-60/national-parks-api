@@ -1,5 +1,5 @@
 import sqlite3
-from models import Natural_Attraction, Park_Natural_Attraction
+from models import NaturalAttraction, ParkNaturalAttraction
 from sql_helper import get_all, get_single, get_all_by_param
 
 def get_all_natural_attractions():
@@ -18,7 +18,7 @@ def get_all_natural_attractions():
 
     # Iterate list of data returned from database
     for row in dataset:
-        natural_attraction = Natural_Attraction(row['id'], row['name'])
+        natural_attraction = NaturalAttraction(row['id'], row['name'])
 
         natural_attractions.append(natural_attraction.__dict__)
 
@@ -38,7 +38,7 @@ def get_single_natural_attraction(id):
     data = get_single(sql, id)
     if not data:
         return {}
-    natural_attraction = Natural_Attraction(data['id'], data['name'])
+    natural_attraction = NaturalAttraction(data['id'], data['name'])
 
     return natural_attraction.__dict__
 
@@ -68,7 +68,7 @@ def get_natural_attraction_by_park_id(park_id):
             return []
         if len(dataset) > 0:
             for row in dataset:
-                park_natural_attraction = Park_Natural_Attraction(
+                park_natural_attraction = ParkNaturalAttraction(
                     row['id'], row['natural_attraction_name'], row['description'], row['park_id'], row['attraction_id'])
                 result = park_natural_attraction.__dict__
                 # add park_name key to the dictionary:

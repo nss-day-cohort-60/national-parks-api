@@ -72,7 +72,7 @@ def get_wildlife_by_park_id(park_id):
     all_wildlife = []
 
     dataset = get_all_by_param(sql, park_id)
-    if not dataset:
+    if dataset is None:
         return []
     for row in dataset:
         print(row)

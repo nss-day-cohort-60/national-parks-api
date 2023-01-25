@@ -6,11 +6,11 @@ def all(resource):
         
 def retrieve(resource, id):
     """For GET requests to a single resource"""
-    if isinstance(id, dict):
+    try:
         parameter = list(id.keys())[0]
         value = list(id.values())[0][0]
         return  method_mapper[resource][parameter](value)
-    else:
+    except IndexError:
         return method_mapper[resource]["single"](id)
 
 def create(resource, post_body):
