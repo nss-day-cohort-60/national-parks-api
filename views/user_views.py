@@ -49,6 +49,28 @@ def get_user_by_id(id):
 
     return user.__dict__
 
+def update_user(id, new_user):
+    """Posts a new dictionary of class User to the database, given all User properties
+
+    new_user: first_name: "", last_name: "", email: "", password: "", isRanger: bool
+    """
+
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        UPDATE Users
+            SET
+            first_name = ?,
+            last_name = ?,
+            email = ?,
+            password = ?,
+            isRanger = ?
+        WHERE id = ?;
+        """, ( new_user['first_name'], new_user['last_name'], new_user['email'], new_user['password'], new_user['isRanger'], id ))
+
+    return new_user
+
 def create_user(new_user):
     """Posts a new dictionary of class User to the database, given all User properties
 
