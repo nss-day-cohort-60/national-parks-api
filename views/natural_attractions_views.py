@@ -44,32 +44,33 @@ def get_single_natural_attraction(id):
 
 def get_natural_attraction_by_park_id(park_id):
 
-        sql = """
-        SELECT
-            pna.id,
-            pna.name as natural_attraction_name,
-            pna.description,
-            pna.park_id,
-            pna.attraction_id,
-            p.name as park_name
-        FROM Park_Natural_Attractions pna
-        JOIN Parks p
-            ON pna.park_id = p.id
-        WHERE pna.park_id = ?
-        """
+    sql = """
+    SELECT
+        pna.id,
+        pna.name as natural_attraction_name,
+        pna.description,
+        pna.park_id,
+        pna.attraction_id,
+        p.name as park_name
+    FROM Park_Natural_Attractions pna
+    JOIN Parks p
+        ON pna.park_id = p.id
+    WHERE pna.park_id = ?
+    """
 
-        park_natural_attractions = []
+    park_natural_attractions = []
 
-        dataset = get_all_by_param(sql, park_id)
-        if dataset is None:
-            return []
-            for row in dataset:
-                park_natural_attraction = ParkNaturalAttraction(
-                    row['id'], row['natural_attraction_name'], row['description'], row['park_id'], row['attraction_id'])
-                result = park_natural_attraction.__dict__
-                # add park_name key to the dictionary:
-                result['park_name'] = row['park_name']
-                park_natural_attractions.append(result)
+    dataset = get_all_by_param(sql, park_id)
+    if dataset is None:
+        return []
+    for row in dataset:
+        park_natural_attraction = ParkNaturalAttraction(
+            row['id'], row['natural_attraction_name'], row['description'], row['park_id'], row['attraction_id'])
+        result = park_natural_attraction.__dict__
+        # add park_name key to the dictionary:
+        result['park_name'] = row['park_name']
+        park_natural_attractions.append(result)
+        
     return park_natural_attractions
 
 def create_natural_attraction(new_attraction):
