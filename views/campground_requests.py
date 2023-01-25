@@ -70,11 +70,10 @@ def create_campground(new_campground):
 
         db_cursor.execute("""
         INSERT INTO Campgrounds
-            ( description, name, park_id, available_sites)
+            ( name, park_id, available_sites, description)
         VALUES
             ( ?, ?, ?, ? );
-        """, (new_campground['description'], new_campground['name'],
-              new_campground['park_id'], new_campground['available_sites'], ))
+        """, (new_campground['name'], new_campground['park_id'], new_campground['available_sites'], new_campground['description'], ))
         
         id = db_cursor.lastrowid
 
@@ -110,19 +109,19 @@ def update_campground(id, new_campground):
         db_cursor.execute("""
         UPDATE Campgrounds
             SET
-                description = ?,
                 name = ?,
                 park_id = ?,
-                available_sites = ?
+                available_sites = ?,
+                description = ?
         WHERE id = ?
-        """, (new_campground['description'], new_campground['name'], new_campground['park_id'], new_campground['available_sites'], id, ))
+        """, (new_campground['name'], new_campground['park_id'], new_campground['available_sites'], new_campground['description'], id, ))
 
         rows_affected = db_cursor.rowcount
 
     if rows_affected == 0:
         # Forces 404 response by main module
         return False
-    else:
-        # Forces 204 response by main module
-        return True
+    
+    # Forces 204 response by main module
+    return True
     
