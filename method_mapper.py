@@ -34,6 +34,8 @@ method_mapper = {
     "blogs": {
         "all": get_all_blogs,
         "single": get_single_blog,
+        "park_id": get_blogs_by_park_id,
+        "user_id": get_blogs_by_user_id,
         "post": create_blog,
         "put": update_blog,
         "delete": ""
