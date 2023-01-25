@@ -43,9 +43,6 @@ def get_single_natural_attraction(id):
     return natural_attraction.__dict__
 
 def get_natural_attraction_by_park_id(park_id):
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
 
         sql = """
         SELECT
@@ -64,9 +61,8 @@ def get_natural_attraction_by_park_id(park_id):
         park_natural_attractions = []
 
         dataset = get_all_by_param(sql, park_id)
-        if not dataset:
+        if dataset is None:
             return []
-        if len(dataset) > 0:
             for row in dataset:
                 park_natural_attraction = ParkNaturalAttraction(
                     row['id'], row['natural_attraction_name'], row['description'], row['park_id'], row['attraction_id'])
