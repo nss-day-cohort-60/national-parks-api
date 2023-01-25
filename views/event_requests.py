@@ -12,7 +12,7 @@ def get_all_events():
                 e.description,
                 e.start_date,
                 e.park_id
-            FROM event e
+            FROM events e
             """
 
     events = []
@@ -43,7 +43,7 @@ def get_single_event(id):
                 e.description,
                 e.start_date,
                 e.park_id
-            FROM event e
+            FROM events e
             WHERE e.id = ?
             """
 

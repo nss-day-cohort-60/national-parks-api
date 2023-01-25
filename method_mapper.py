@@ -2,7 +2,7 @@ from views import get_all_amenities, get_all_amenity_types, get_amenity_by_id, g
 from views import get_all_blogs, get_single_blog, get_blogs_by_user_id, get_blogs_by_park_id, create_blog, update_blog
 from views import get_all_campgrounds, get_single_campground
 from views import get_all_reservations, get_single_reservation
-from views import get_all_events, get_single_event
+from views import get_all_events, get_single_event, get_all_registration, get_single_registration
 
 method_mapper = {
     "amenities": {
@@ -34,8 +34,8 @@ method_mapper = {
         "delete": ""
     },
     "event_registration": {
-        "all": get_all_events,
-        "single": get_single_event,
+        "all": get_all_registration,
+        "single": get_single_registration,
         "post": "",
         "put": "",
         "delete": ""

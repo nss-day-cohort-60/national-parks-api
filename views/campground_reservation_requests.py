@@ -10,7 +10,7 @@ def get_all_reservations():
                 res.id,
                 res.start_date,
                 res.end_date,
-                res.campground_id,
+                res.campround_id,
                 res.user_id
             FROM camping_reservations res
             """
@@ -21,7 +21,7 @@ def get_all_reservations():
 
     for row in dataset:
 
-        reservation = Reservation(row['id'], row['start_date'], row['end_date'], row['campground_id'], row['user_id'])
+        reservation = Reservation(row['id'], row['start_date'], row['end_date'], row['campround_id'], row['user_id'])
 
         reservations.append(reservation.__dict__)
 
@@ -41,7 +41,7 @@ def get_single_reservation(id):
                 res.id,
                 res.start_date,
                 res.end_date,
-                res.campground_id,
+                res.campround_id,
                 res.user_id
             FROM camping_reservations res
             WHERE res.id = ?
@@ -49,7 +49,7 @@ def get_single_reservation(id):
 
     data = get_single(sql, id)
 
-    reservation = Reservation(data['id'], data['start_date'], data['end_date'], data['campground_id'], data['user_id'])
+    reservation = Reservation(data['id'], data['start_date'], data['end_date'], data['campround_id'], data['user_id'])
 
     return reservation.__dict__
     

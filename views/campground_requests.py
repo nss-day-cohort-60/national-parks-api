@@ -1,3 +1,4 @@
+import sqlite3
 from models import Campground
 from sql_helper import get_all, get_single
 
@@ -13,7 +14,7 @@ def get_all_campgrounds():
             c.park_id,
             c.available_sites,
             c.description
-        FROM Campground c
+        FROM Campgrounds c
         """ 
 
     campgrounds = []
@@ -40,18 +41,88 @@ def get_single_campground(id):
 
     sql = """
             SELECT
-            c.id,
-            c.start_date,
-            c.end_date,
-            campground_id,
-            user_id
-            FROM campground c
+                c.id,
+                c.name,
+                c.park_id,
+                c.available_sites,
+                c.description
+            FROM Campgrounds c
             WHERE c.id = ?
             """
 
     data = get_single(sql, id)
 
-    campground = Campground(data['id'], data['start_date'], data['end_date'], data['campground_id'], data['user_id'])
+    campground = Campground(data['id'], data['name'], data['park_id'], data['available_sites'], data['description'])
 
     return campground.__dict__
+
+def create_campground(new_campground):
+    """Adds a new campground dictionary
+
+    Args:
+        campground (dictionary): Information about the campground
+
+    Returns:
+        dictionary: Returns the campground dictionary with a campground id
+    """
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        INSERT INTO Campgrounds
+            ( description, name, park_id, available_sites)
+        VALUES
+            ( ?, ?, ?, ? );
+        """, (new_campground['description'], new_campground['name'],
+              new_campground['park_id'], new_campground['available_sites'], ))
+        
+        id = db_cursor.lastrowid
+
+        new_campground['id'] = id
+    
+    return new_campground
+
+
+def delete_campground(id):
+    """Deletes a single campground
+
+    Args:
+        id (int): Campground id
+    """
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM campgrounds
+        WHERE id = ?
+        """, (id, ))
+
+def update_campground(id, new_campground):
+    """Updates the campground dictionary with the new values
+
+    Args:
+        id (int): Campground id
+        new_campground (dict): Campground dictionary with updated values
+    """
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        UPDATE Campgrounds
+            SET
+                description = ?,
+                name = ?,
+                park_id = ?,
+                available_sites = ?
+        WHERE id = ?
+        """, (new_campground['description'], new_campground['name'], new_campground['park_id'], new_campground['available_sites'], id, ))
+
+        rows_affected = db_cursor.rowcount
+
+    if rows_affected == 0:
+        # Forces 404 response by main module
+        return False
+    else:
+        # Forces 204 response by main module
+        return True
     
