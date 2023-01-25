@@ -10,7 +10,7 @@ def retrieve(resource, id):
         parameter = list(id.keys())[0]
         value = list(id.values())[0][0]
         return  method_mapper[resource][parameter](value)
-    except IndexError:
+    except AttributeError:
         return method_mapper[resource]["single"](id)
 
 def create(resource, post_body):
