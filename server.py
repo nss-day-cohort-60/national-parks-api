@@ -36,7 +36,7 @@ class HandleRequests(BaseHTTPRequestHandler):
                 self._set_headers(200)
             else:
                 self._set_headers(404)
-                response = { "message": f"{id} can not be found.  Please enter a valid resource id." }
+                response = { "message": f"{id} can not be found. Please enter a valid resource id." }
         else:
             self._set_headers(200)
             response = all(resource)
@@ -68,9 +68,8 @@ class HandleRequests(BaseHTTPRequestHandler):
         post_body = json.loads(post_body)
 
         (resource, id) = self.parse_url(self.path)
-        response = update(resource, id, post_body)
 
-        self.wfile.write(json.dumps(response).encode())
+        update(resource, id, post_body)
 
     def do_DELETE(self):
         """Deletes dictionary from database
@@ -110,7 +109,6 @@ def main():
     host = ''
     port = 8088
     HTTPServer((host, port), HandleRequests).serve_forever()
-
 
 if __name__ == "__main__":
     main()
