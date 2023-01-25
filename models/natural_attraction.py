@@ -1,4 +1,4 @@
-class Natural_Attraction():
+class NaturalAttraction():
     """A blueprint for natural attractions"""
 
     def __init__(self, id, name):
