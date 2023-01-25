@@ -27,7 +27,7 @@ method_mapper = {
         "single": get_user_favorite_by_id,
         "post": create_user_favorite,
         "put": "",
-        "delete": ""
+        "delete": delete_user_favorite
     },
     "blogs": {
         "all": get_all_blogs,
@@ -51,5 +51,33 @@ method_mapper = {
         "post": create_natural_attraction,
         "put": update_natural_attraction,
         "delete": delete_natural_attraction
+    },
+    "events": {
+        "all": get_all_events,
+        "single": get_single_event,
+        "post": create_event,
+        "put": update_event,
+        "delete": delete_event
+    },
+    "event_registration": {
+        "all": get_all_registration,
+        "single": get_single_registration,
+        "post": create_event_registration,
+        "put": update_event_registration,
+        "delete": delete_event_registration
+    },
+    "campgrounds": {
+        "all": get_all_campgrounds,
+        "single": get_single_campground,
+        "post": create_campground,
+        "put": update_campground,
+        "delete": delete_campground
+    },
+    "camping_reservations": {
+        "all": get_all_reservations,
+        "single": get_single_reservation,
+        "post": create_reservation,
+        "put": update_reservation,
+        "delete": delete_reservation
     }
 }
