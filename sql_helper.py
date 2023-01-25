@@ -38,3 +38,11 @@ def get_single(sql, id):
         data = db_cursor.fetchone()
 
     return data
+
+def get_all_by_param(sql, id):
+    with sqlite3.connect(db_name) as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+        db_cursor.execute(sql, (id, ))
+
+        return db_cursor.fetchall()

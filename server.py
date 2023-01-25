@@ -75,7 +75,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         """Deletes dictionary from database
         """
         (resource, id) = self.parse_url(self.path)
-        self._set_headers(405)
+        self._set_headers(204)
 
         delete(resource, id)
 
