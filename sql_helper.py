@@ -39,6 +39,23 @@ def get_single(sql, id):
 
     return data
 
+def create_resource(sql, sql_values, new_resource):
+    """Creates a new row of data
+
+    Args:
+        sql (string): sql query to insert new data into a new row.
+        new_resource (string): the new data in question
+    """
+    with sqlite3.connect(db_name) as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(sql, sql_values)
+
+        new_resource_id = db_cursor.lastrowid
+        new_resource['id'] = new_resource_id
+
+    return new_resource
 def get_all_by_param(sql, id):
     with sqlite3.connect(db_name) as conn:
         conn.row_factory = sqlite3.Row
