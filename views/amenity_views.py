@@ -93,7 +93,7 @@ def create_amenity_type(new_amenity_type):
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-        INSERT INTO Users
+        INSERT INTO Amenities
             ( type )
         VALUES
             ( ? );

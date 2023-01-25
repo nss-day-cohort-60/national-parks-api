@@ -69,6 +69,8 @@ def update_user(id, new_user):
         WHERE id = ?;
         """, ( new_user['first_name'], new_user['last_name'], new_user['email'], new_user['password'], new_user['isRanger'], id ))
 
+    new_user['id'] = id
+
     return new_user
 
 def create_user(new_user):
@@ -164,9 +166,9 @@ def delete_user(id):
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-        DELETE FROM User_Favorites
+        DELETE FROM Users
         WHERE id = ?
-        """, ( id ))
+        """, ( id, ))
 
 def delete_user_favorite(id):
     """Deletes a dictionary of class UserFavorite from the database, given an id
@@ -180,4 +182,4 @@ def delete_user_favorite(id):
         db_cursor.execute("""
         DELETE FROM User_Favorites
         WHERE id = ?
-        """, ( id ))
+        """, ( id, ))
