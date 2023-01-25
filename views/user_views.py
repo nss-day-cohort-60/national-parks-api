@@ -1,5 +1,5 @@
 import sqlite3
-from models import User, User_Favorite
+from models import User, UserFavorite
 from sql_helper import get_all, get_single
 
 def get_all_users():
@@ -86,7 +86,7 @@ def get_all_user_favorites():
     dataset = get_all(sql)
 
     for row in dataset:
-        favorite = User_Favorite(row["id"], row["type_id"], row["post_id"], row["user_id"])
+        favorite = UserFavorite(row["id"], row["type_id"], row["post_id"], row["user_id"])
 
         favorites.append(favorite.__dict__)
 
@@ -108,12 +108,12 @@ def get_user_favorite_by_id(id):
 
     favorite = {}
     row = get_single(sql, id)
-    favorite = User_Favorite(row["id"], row["type_id"], row["post_id"], row["user_id"])
+    favorite = UserFavorite(row["id"], row["type_id"], row["post_id"], row["user_id"])
 
     return favorite.__dict__
 
 def create_user_favorite(new_favorite):
-    """With posts a new dictionary of class User_Favorite to the database, given all properties
+    """With posts a new dictionary of class UserFavorite to the database, given all properties
 
     new_favorite: type_id: "", post_id: "", user_id: "", password: "", isRanger: bool
     """

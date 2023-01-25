@@ -1,4 +1,4 @@
-from models import Amenity, Park_Amenity
+from models import Amenity, ParkAmenity
 from sql_helper import get_all, get_single
 
 def get_all_amenity_types():
@@ -57,7 +57,7 @@ def get_all_amenities():
     dataset = get_all(sql)
 
     for row in dataset:
-        park_amenity = Park_Amenity(row["id"], row["name"], row["amenity_id"], row["park_id"])
+        park_amenity = ParkAmenity(row["id"], row["name"], row["amenity_id"], row["park_id"])
 
         amenities.append(park_amenity.__dict__)
 
@@ -79,6 +79,6 @@ def get_amenity_by_id(id):
 
     park_amenity = {}
     data = get_single(sql, id)
-    park_amenity = Park_Amenity(data["id"], data["name"], data["amenity_id"], data["park_id"])
+    park_amenity = ParkAmenity(data["id"], data["name"], data["amenity_id"], data["park_id"])
 
     return park_amenity.__dict__
