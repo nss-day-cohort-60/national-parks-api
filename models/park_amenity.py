@@ -1,5 +1,5 @@
-class Park_Amenity():
-    """defines Park_Amenity Class"""
+class ParkAmenity():
+    """defines ParkAmenity Class"""
     def __init__(self, id, name, amenity_id, park_id):
         self.id = id
         self.name = name

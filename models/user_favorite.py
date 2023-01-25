@@ -1,5 +1,5 @@
-class User_Favorite():
-    """defines User_Favorite Class"""
+class UserFavorite():
+    """defines UserFavorite Class"""
     def __init__(self, id, type_id, post_id, user_id):
         self.id = id
         self.type_id = type_id

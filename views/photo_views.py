@@ -1,4 +1,5 @@
-from models import Photos, User
+import sqlite3
+from models import Photos
 from sql_helper import get_all, get_single, get_all_by_param
 
 def get_all_photos():
@@ -91,7 +92,7 @@ def create_photos(photo):
             INSERT INTO Photos
                 ( url, user_id, park_id )
             VALUES
-                ( ?, ?, ?, ?, ?);
+                ( ?, ?, ?);
             """, (photo['url'], photo['user_id'], photo['park_id'] ))
 
             id = db_cursor.lastrowid
@@ -132,3 +133,39 @@ def get_photos_by_park_id(park_id):
 
     return photos
 
+def delete_photos(id):
+    """Deletes a dictionary of class Parks from the database, given an id
+
+    Args: id (int)
+    """
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM Photos
+        WHERE id = ?
+        """, ( id, ))
+
+def update_photos(id, new_photo):
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        UPDATE Photos
+            SET
+            url = ?,
+            user_id = ?,
+            park_id = ?
+        WHERE id = ?;
+        """, (new_photo['url'], new_photo['user_id'], new_photo['park_id'], id, ))
+
+        # Were any rows affected?
+        # Did the client send an `id` that exists?
+        rows_affected = db_cursor.rowcount
+
+    if rows_affected == 0:
+        # Forces 404 response by main module
+        return False
+    else:
+        # Forces 204 response by main module
+        return True
