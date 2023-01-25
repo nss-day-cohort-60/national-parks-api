@@ -101,7 +101,7 @@ def update_event_registration(id, new_event_registration):
         UPDATE event_registration
             SET
                 event_id = ?,
-                user_id = ?,
+                user_id = ?
         WHERE id = ?
         """, (new_event_registration['event_id'], new_event_registration['user_id'], id, ))
 
