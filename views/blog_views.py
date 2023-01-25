@@ -1,6 +1,6 @@
 import sqlite3
 from models import Blog
-from sql_helper import get_all, get_single
+from sql_helper import get_all, get_single, create_resource
 
 def get_all_blogs():
     """Sends the sql query to get a list of all blog dictionaries to get_all as a parameter
@@ -138,44 +138,21 @@ def get_blogs_by_park_id(park_id):
         blogs.append(blog.__dict__)
     return blogs
 
-def create_blog(new_blog, new_photo):
+def create_blog(new_blog, new_photo = None):
     """Creates new blog dictionary"""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
 
-        db_cursor.execute("""
+    sql="""
         INSERT INTO Blogs
-            ( title, post_body, date_created, user_id, park_id )
+            ( title, post_body, date_created, user_id, park_id, photo_id )
         VALUES
-            ( ?, ?, ?, ?, ?);
-        """, (new_blog['title'], new_blog['post_body'],
-            new_blog['date_created'], new_blog['user_id'],
-            new_blog['park_id'], ))
+            ( ?, ?, ?, ?, ?, ?);
+        """
+    sql_values=(new_blog['title'], new_blog['post_body'], new_blog['date_created'],
+            new_blog['user_id'], new_blog['park_id'], new_blog['photo_id'])
 
-        new_blog_id = db_cursor.lastrowid
-        new_blog['id'] = new_blog_id
+    new_resource = create_resource(sql, sql_values, new_blog)
 
-        db_cursor.execute("""
-        INSERT INTO Photos
-            ( url, user_id, park_id )
-        VALUES
-            ( ?, ?, ? );
-        """, (new_photo['url'], new_photo['user_id'],
-            new_photo['park_id'] ))
-
-        new_photo_id = db_cursor.lastrowid
-        new_photo['id'] = new_photo_id
-
-        new_blog_photo = {}
-
-        db_cursor.execute("""
-        INSERT INTO blog_photos
-            ( blog_id, photo_id )
-        VALUES
-            ( ?, ?, ? );
-        """, (new_blog_photo['new_blog_id'], new_blog_photo['new_photo_id'] ))
-
-    return new_blog
+    return new_resource
 
 
 #not done, good luck figuring out how to also update photos
@@ -192,9 +169,7 @@ def update_blog(id, new_blog):
                 user_id = ?,
                 park_id = ?
         WHERE id = ?
-        """, (new_blog['title'], new_blog['post_body'],
-              new_blog['date_created'], new_blog['user_id'],
-              new_blog['park_id'], id, ))
+        """, (new_blog['title'], new_blog['post_body'], new_blog['date_created'], new_blog['user_id'], new_blog['park_id'], id, ))
 
         # Were any rows affected?
         # Did the client send an `id` that exists?
