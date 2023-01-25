@@ -117,16 +117,16 @@ def update_wildlife(id, new_wildlife):
         WHERE id = ?
         """, (new_wildlife['name'], new_wildlife['information'],
               new_wildlife['wildlife_group_id'], new_wildlife['image'], id, ))
-
+              
         # Were any rows affected?
         # Did the client send an `id` that exists?
         rows_affected = db_cursor.rowcount
 
     if rows_affected == 0:
         # Forces 404 response by main module
-        return {}
+        return False
         # Forces 204 response by main module
-    return new_wildlife
+    return True
 
 def delete_wildlife(id):
     """remove wildlife dictionary from the list"""
