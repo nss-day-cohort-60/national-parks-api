@@ -75,7 +75,6 @@ def get_wildlife_by_park_id(park_id):
     if dataset is None:
         return []
     for row in dataset:
-        print(row)
         wildlife = Wildlife(row['id'], row['name'], row['information'],
                             row['wildlife_group_id'], row['image'])
 
@@ -125,9 +124,9 @@ def update_wildlife(id, new_wildlife):
 
     if rows_affected == 0:
         # Forces 404 response by main module
-        return False
+        return {}
         # Forces 204 response by main module
-    return True
+    return new_wildlife
 
 def delete_wildlife(id):
     """remove wildlife dictionary from the list"""
