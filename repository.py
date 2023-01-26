@@ -60,7 +60,7 @@ def get_blogs_by_park_id_and_search_term(park_id, search_term):
             b.id = bp.blog_id
             LEFT JOIN Photos p ON
             p.id = bp.photo_id
-            WHERE b.park_id = ? AND b.title LIKE ? OR b.post_body LIKE ? 
+            WHERE b.park_id = ? AND (b.title LIKE ? OR b.post_body LIKE ?)
             """, ( park_id, f"%{search_term}%", f"%{search_term}%"))
 
         blogs = []
