@@ -67,11 +67,16 @@ def get_all_by_param(sql, id):
     return db_cursor.fetchall()
 
 def update_resource(sql, sql_values):
-    """Updates a resource in SQL database. Parameters, 'sql' and 'sql_values', are used to connect to the database specified by 'db_name', executes the SQL query, and returns the number of rows affected by the query."""
+    """Updates a resource in SQL database. Parameters, 'sql' and 'sql_values', are used to connect to the database specified by 'db_name', execute the SQL query, and return the number of rows affected by the query."""
     with sqlite3.connect(db_name) as conn:
         db_cursor = conn.cursor()
         db_cursor.execute(sql, sql_values)
-    return db_cursor.rowcount
+        rows_affected = db_cursor.rowcount
+        if rows_affected == 0:
+            # Forces 404 response by main module
+            return False
+        # Forces 204 response by main module
+        return True
 
 
 def delete_resource(sql, id):

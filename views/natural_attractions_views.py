@@ -103,14 +103,11 @@ def update_natural_attraction(id, new_attraction):
 
         # Were any rows affected?
         # Did the client send an `id` that exists?
-    rows_affected = update_resource(sql, sql_values)
+        
+    return update_resource(sql, sql_values)
 
-    if rows_affected == 0:
-        # Forces 404 response by main module
-        return False
-        # Forces 204 response by main module
-    return True
 
+   
 
 def delete_natural_attraction(id):
     """remove natural_attraction dictionary from the list"""
