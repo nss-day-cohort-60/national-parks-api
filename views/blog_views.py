@@ -1,6 +1,6 @@
 import sqlite3
 from models import Blog
-from sql_helper import get_all, get_single, create_resource
+from sql_helper import get_all, get_single, create_resource, get_all_by_param
 
 def get_all_blogs():
     """Sends the sql query to get a list of all blog dictionaries to get_all as a parameter
@@ -56,9 +56,9 @@ def get_single_blog(id):
             b.park_id,
             p.url as photo_url
         FROM Blogs b
-        JOIN Blog_Photos bp ON
+        LEFT JOIN Blog_Photos bp ON
         b.id = bp.blog_id
-        JOIN photos p ON
+        LEFT JOIN photos p ON
         p.id = bp.photo_id
         WHERE b.id = ?
         """
@@ -84,24 +84,28 @@ def get_blogs_by_user_id(user_id):
         SELECT
             b.id,
             b.title,
+            b.post_body,
             b.date_created,
             b.user_id,
-            b.park_id
+            b.park_id,
+            p.url as photo_url
         FROM blogs b
-        WHERE user_id = ?
-        JOIN blog_photos ON
-        blogs.id = blog_id
-        JOIN photos ON
-        photos.id = blog_photos.photo_id
-        """, ( user_id, ))
+        LEFT JOIN blog_photos ON
+        b.id = blog_id
+        LEFT JOIN photos p ON
+        p.id = blog_photos.photo_id
+        WHERE b.user_id = ?
+        """)
 
     blogs = []
 
-    dataset = get_all(sql)
+    dataset = get_all_by_param(sql, user_id)
 
     for row in dataset:
-        blog = Blog(row['id'],row['title'],row['date_created'],row['user_id'],row['park_id'])
+        blog = Blog(row['id'],row['title'],row['post_body'],row['date_created'],row['user_id'],row['park_id'],row['photo_url'])
+        
         blogs.append(blog.__dict__)
+
     return blogs
 
 def get_blogs_by_park_id(park_id):
@@ -118,27 +122,31 @@ def get_blogs_by_park_id(park_id):
         SELECT
             b.id,
             b.title,
+            b.post_body,
             b.date_created,
             b.user_id,
-            b.park_id
+            b.park_id,
+            p.url as photo_url
         FROM blogs b
-        WHERE park_id = ?
-        JOIN blog_photos ON
-        blogs.id = blog_id
-        JOIN photos ON
-        photos.id = blog_photos.photo_id
-        """, ( park_id, ))
+        LEFT JOIN blog_photos ON
+        b.id = blog_id
+        LEFT JOIN photos p ON
+        p.id = blog_photos.photo_id
+        WHERE b.park_id = ?
+        """)
 
     blogs = []
 
-    dataset = get_all(sql)
+    dataset = get_all_by_param(sql, park_id)
 
     for row in dataset:
-        blog = Blog(row['id'],row['title'],row['date_created'],row['user_id'],row['park_id'])
+        blog = Blog(row['id'],row['title'],row['post_body'],row['date_created'],row['user_id'],row['park_id'],row['photo_url'])
+        
         blogs.append(blog.__dict__)
+
     return blogs
 
-def create_blog(new_blog, new_photo = None):
+def create_blog(new_blog):
     """Creates new blog dictionary"""
 
     sql="""
@@ -161,7 +169,7 @@ def update_blog(id, new_blog):
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-        UPDATE Blog
+        UPDATE Blogs
             SET
                 title = ?,
                 post_body = ?,
@@ -181,3 +189,12 @@ def update_blog(id, new_blog):
     else:
         # Forces 204 response by main module
         return True
+
+def delete_blog(id):
+
+    sql = """
+    DELETE FROM Blogs
+    WHERE id = ?
+    """
+
+    get_single(sql, id)
