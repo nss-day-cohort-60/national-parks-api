@@ -1,6 +1,6 @@
 import sqlite3
 from models import Wildlife
-from sql_helper import get_all, get_single, get_all_by_param
+from sql_helper import get_all, get_single, get_all_by_param, create_resource, update_resource, delete_resource
 
 
 def get_all_wildlife():
@@ -83,31 +83,23 @@ def get_wildlife_by_park_id(park_id):
     return all_wildlife
 
 def create_wildlife(new_wildlife):
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
+    """Function to create a new resource in the database"""
+    sql = """   
         INSERT INTO Wildlife
             ( name, information, wildlife_group_id, image)
         VALUES
             ( ?, ?, ?, ?);
-        """, (new_wildlife['name'], new_wildlife['information'],
-              new_wildlife['wildlife_group_id'], new_wildlife['image']))
+        """     
+    sql_values = (new_wildlife['name'], new_wildlife['information'],
+              new_wildlife['wildlife_group_id'], new_wildlife['image'])
 
-        id = db_cursor.lastrowid
+    new_resource = create_resource(sql, sql_values, new_wildlife)
 
-        # Add the `id` property to the wildlife dictionary
-        new_wildlife['id'] = id
-
-    return new_wildlife
-
+    return new_resource
 
 def update_wildlife(id, new_wildlife):
-    """iterates the list of wildlife until it finds the right one, and then replaces it with what the client sent as the replacement."""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
+    """Function to update the Wildlife table in a database"""
+    sql = """
         UPDATE Wildlife
             SET
                 name = ?,
@@ -115,12 +107,10 @@ def update_wildlife(id, new_wildlife):
                 wildlife_group_id = ?,
                 image = ?
         WHERE id = ?
-        """, (new_wildlife['name'], new_wildlife['information'],
-              new_wildlife['wildlife_group_id'], new_wildlife['image'], id, ))
-              
-        # Were any rows affected?
-        # Did the client send an `id` that exists?
-        rows_affected = db_cursor.rowcount
+        """
+    sql_values = (new_wildlife['name'], new_wildlife['information'],new_wildlife['wildlife_group_id'], new_wildlife['image'], id,) 
+
+    rows_affected = update_resource(sql, sql_values)
 
     if rows_affected == 0:
         # Forces 404 response by main module
@@ -130,10 +120,8 @@ def update_wildlife(id, new_wildlife):
 
 def delete_wildlife(id):
     """remove wildlife dictionary from the list"""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
+    sql = """
         DELETE FROM Wildlife
         WHERE id = ?
-        """, (id, ))
+        """
+    delete_resource(sql, id)

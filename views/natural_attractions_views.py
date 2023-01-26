@@ -43,6 +43,7 @@ def get_single_natural_attraction(id):
     return natural_attraction.__dict__
 
 def get_natural_attraction_by_park_id(park_id):
+    """getting all natural attractions in a specific park"""
 
     sql = """
     SELECT
@@ -74,6 +75,7 @@ def get_natural_attraction_by_park_id(park_id):
     return park_natural_attractions
 
 def create_natural_attraction(new_attraction):
+    """Function to create a new resource in the database"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         db_cursor = conn.cursor()
 
@@ -91,7 +93,7 @@ def create_natural_attraction(new_attraction):
 
 
 def update_natural_attraction(id, new_attraction):
-    """iterates the list of wildlife until it finds the right one, and then replaces it with what the client sent as the replacement."""
+    """Function to update the Wildlife table in a database"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         db_cursor = conn.cursor()
 
@@ -114,7 +116,7 @@ def update_natural_attraction(id, new_attraction):
 
 
 def delete_natural_attraction(id):
-    """remove wildlife dictionary from the list"""
+    """remove natural_attraction dictionary from the list"""
     with sqlite3.connect("./national_park.sqlite3") as conn:
         db_cursor = conn.cursor()
 
