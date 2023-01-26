@@ -101,9 +101,6 @@ def update_natural_attraction(id, new_attraction):
         """ 
     sql_values = (new_attraction['name'], id, )
 
-        # Were any rows affected?
-        # Did the client send an `id` that exists?
-        
     return update_resource(sql, sql_values)
 
 

@@ -109,14 +109,9 @@ def update_wildlife(id, new_wildlife):
         WHERE id = ?
         """
     sql_values = (new_wildlife['name'], new_wildlife['information'],new_wildlife['wildlife_group_id'], new_wildlife['image'], id,) 
+    
+    return update_resource(sql, sql_values)
 
-    rows_affected = update_resource(sql, sql_values)
-
-    if rows_affected == 0:
-        # Forces 404 response by main module
-        return False
-        # Forces 204 response by main module
-    return True
 
 def delete_wildlife(id):
     """remove wildlife dictionary from the list"""
