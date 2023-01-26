@@ -155,8 +155,7 @@ def create_blog(new_blog):
         VALUES
             ( ?, ?, ?, ?, ?, ?);
         """
-    sql_values=(new_blog['title'], new_blog['post_body'], new_blog['date_created'],
-            new_blog['user_id'], new_blog['park_id'], new_blog['photo_id'])
+    sql_values=(new_blog['title'], new_blog['post_body'], new_blog['date_created'],new_blog['user_id'], new_blog['park_id'], new_blog['photo_id'])
 
     new_resource = create_resource(sql, sql_values, new_blog)
 

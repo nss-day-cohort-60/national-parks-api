@@ -6,10 +6,15 @@ def all(resource):
 
 def retrieve(resource, id):
     """For GET requests to a single resource"""
-    try:
+    try: #for requests like /something?park_id=3
         parameter = list(id.keys())[0]
         value = list(id.values())[0][0]
-        return  method_mapper[resource][parameter](value)
+        try: # for requests like /something?park_id=3&user_id=1
+            second_parameter = list(id.keys())[1]
+            second_value = list(id.values())[1][0]
+            return method_mapper[resource][parameter][second_parameter](value, second_value)
+        except AttributeError:
+            return  method_mapper[resource][parameter](value)
     except AttributeError:
         return method_mapper[resource]["single"](id)
 
