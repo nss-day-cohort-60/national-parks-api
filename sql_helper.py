@@ -56,10 +56,32 @@ def create_resource(sql, sql_values, new_resource):
         new_resource['id'] = new_resource_id
 
     return new_resource
+
 def get_all_by_param(sql, id):
+    """Function that executes the SQL query with the id as a parameter and returns a filtered list of the resource by parameter."""
     with sqlite3.connect(db_name) as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
         db_cursor.execute(sql, (id, ))
 
     return db_cursor.fetchall()
+
+def update_resource(sql, sql_values):
+    """Updates a resource in SQL database. Parameters, 'sql' and 'sql_values', are used to connect to the database specified by 'db_name', execute the SQL query, and return the number of rows affected by the query."""
+    with sqlite3.connect(db_name) as conn:
+        db_cursor = conn.cursor()
+        db_cursor.execute(sql, sql_values)
+        rows_affected = db_cursor.rowcount
+        if rows_affected == 0:
+            # Forces 404 response by main module
+            return False
+        # Forces 204 response by main module
+        return True
+
+
+def delete_resource(sql, id):
+    """Deletes a resource from a database using the provided SQL query and Id """
+    with sqlite3.connect(db_name) as conn:
+        db_cursor = conn.cursor()
+        db_cursor.execute(sql, (id, ))
+        
