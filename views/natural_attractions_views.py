@@ -1,6 +1,6 @@
 import sqlite3
 from models import NaturalAttraction, ParkNaturalAttraction
-from sql_helper import get_all, get_single, get_all_by_param
+from sql_helper import get_all, get_single, get_all_by_param, create_resource, update_resource, delete_resource
 
 def get_all_natural_attractions():
     """Function to retrieve all natural_attractions from a database and return the data as a list of dictionaries"""
@@ -76,37 +76,34 @@ def get_natural_attraction_by_park_id(park_id):
 
 def create_natural_attraction(new_attraction):
     """Function to create a new resource in the database"""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
 
-        db_cursor.execute("""
+    sql = """
         INSERT INTO Natural_Attractions
             ( name)
         VALUES
             ( ?);
-        """, (new_attraction['name'],))
+        """
+    sql_values =(new_attraction['name'],)
 
-        id = db_cursor.lastrowid
-        new_attraction['id'] = id
+    new_resource = create_resource(sql, sql_values, new_attraction)
 
-    return new_attraction
+    return new_resource
 
 
 def update_natural_attraction(id, new_attraction):
-    """Function to update the Wildlife table in a database"""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
+    """Function to update the Natural_Attractions table in a database"""
 
-        db_cursor.execute("""
+    sql = """
         UPDATE Natural_Attractions
             SET
                 name = ?
         WHERE id = ?
-        """, (new_attraction['name'], id, ))
+        """ 
+    sql_values = (new_attraction['name'], id, )
 
         # Were any rows affected?
         # Did the client send an `id` that exists?
-        rows_affected = db_cursor.rowcount
+    rows_affected = update_resource(sql, sql_values)
 
     if rows_affected == 0:
         # Forces 404 response by main module
@@ -117,10 +114,9 @@ def update_natural_attraction(id, new_attraction):
 
 def delete_natural_attraction(id):
     """remove natural_attraction dictionary from the list"""
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
+  
+    sql = """
         DELETE FROM Natural_Attractions
         WHERE id = ?
-        """, (id, ))
+        """
+    delete_resource(sql, id)
