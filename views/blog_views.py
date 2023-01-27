@@ -197,3 +197,77 @@ def delete_blog(id):
     """
 
     get_single(sql, id)
+
+def get_blogs_by_park_id_and_search_term(park_id, search_term):
+    """Sends the sql query to get a list of all blog dictionaries to get_all as a parameter
+
+    Returns:
+        list: of all blog dictionaries
+    """
+
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+        db_cursor.execute("""
+            SELECT
+                b.id,
+                b.title,
+                b.post_body,
+                b.date_created,
+                b.user_id,
+                b.park_id,
+                p.url as photo_url
+            FROM Blogs b
+            LEFT JOIN Blog_Photos bp ON
+            b.id = bp.blog_id
+            LEFT JOIN Photos p ON
+            p.id = bp.photo_id
+            WHERE b.park_id = ? AND (b.title LIKE ? OR b.post_body LIKE ?)
+            """, ( park_id, f"%{search_term}%", f"%{search_term}%"))
+
+        blogs = []
+
+        dataset = db_cursor.fetchall()
+
+        for row in dataset:
+            blog = Blog(row['id'],row['title'],row['post_body'],row['date_created'],row['user_id'],row['park_id'], row['photo_url'])
+            blogs.append(blog.__dict__)
+
+    return blogs
+
+def get_blogs_by_search_term(search_term):
+    """Sends the sql query to get a list of all blog dictionaries to get_all as a parameter
+
+    Returns:
+        list: of all blog dictionaries
+    """
+
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+        db_cursor.execute("""
+            SELECT
+                b.id,
+                b.title,
+                b.post_body,
+                b.date_created,
+                b.user_id,
+                b.park_id,
+                p.url as photo_url
+            FROM Blogs b
+            LEFT JOIN Blog_Photos bp ON
+            b.id = bp.blog_id
+            LEFT JOIN Photos p ON
+            p.id = bp.photo_id
+            WHERE b.title LIKE ? OR b.post_body LIKE ?
+            """, ( f"%{search_term}%", f"%{search_term}%"))
+
+        blogs = []
+
+        dataset = db_cursor.fetchall()
+
+        for row in dataset:
+            blog = Blog(row['id'],row['title'],row['post_body'],row['date_created'],row['user_id'],row['park_id'], row['photo_url'])
+            blogs.append(blog.__dict__)
+
+    return blogs
