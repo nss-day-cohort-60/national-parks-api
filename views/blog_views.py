@@ -24,6 +24,7 @@ def get_all_blogs():
         b.id = bp.blog_id
         LEFT JOIN Photos p ON
         p.id = bp.photo_id
+        ORDER BY b.date_created DESC
         """
 
     blogs = []
