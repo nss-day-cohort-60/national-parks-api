@@ -190,10 +190,8 @@ def get_photos_by_user_id_and_park_id(user_id, park_id):
                 p.user_id,
                 p.park_id
             FROM Photos p
-            JOIN Users u 
             WHERE p.user_id = ?
-            JOIN Parks pk
-            WHERE p.park_id = ?
+            AND p.park_id = ?
             """, ( user_id, park_id))
 
         photos = []
