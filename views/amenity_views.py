@@ -72,8 +72,11 @@ def get_amenities_by_park_id(park_id):
             pa.id,
             pa.name,
             pa.amenity_id,
-            pa.park_id
+            pa.park_id,
+            a.type
         FROM Park_Amenities pa
+        LEFT JOIN Amenities a
+        ON pa.amenity_id = a.id
         WHERE park_id = ?
         """
     )
@@ -82,7 +85,7 @@ def get_amenities_by_park_id(park_id):
     dataset = get_all_by_param(sql, park_id)
 
     for row in dataset:
-        park_amenity = ParkAmenity(row["id"], row["name"], row["amenity_id"], row["park_id"])
+        park_amenity = ParkAmenity(row["id"], row["name"], row["amenity_id"], row["park_id"], row["type"])
 
         amenities.append(park_amenity.__dict__)
 

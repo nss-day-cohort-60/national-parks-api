@@ -4,7 +4,7 @@ from .blog_views import get_all_blogs, get_single_blog, get_blogs_by_user_id, ge
 from .photo_views import get_all_photos, get_photos_by_park_id, get_photos_by_user_id, get_single_photo, create_photos, delete_photos, update_photos, get_photos_by_user_id_and_park_id
 from .park_views import get_all_parks, get_single_park, create_park, delete_park, update_park
 from .amenity_views import get_all_amenities, get_all_amenity_types, get_amenity_by_id, get_amenity_type_by_id, delete_amenity_type, delete_park_amenity, create_amenity_type, create_park_amenity, update_amenity_type, update_park_amenity, get_amenities_by_park_id
-from .campground_requests import get_all_campgrounds, get_single_campground, create_campground, delete_campground, update_campground
+from .campground_requests import get_all_campgrounds, get_single_campground, create_campground, delete_campground, update_campground, get_campgrounds_by_park
 from .campground_reservation_requests import get_all_reservations, get_single_reservation, create_reservation, update_reservation, delete_reservation
 from .event_requests import get_all_events, get_single_event, create_event, update_event, delete_event
 from .event_registration_requests import get_all_registration, get_single_registration, update_event_registration, create_event_registration, delete_event_registration

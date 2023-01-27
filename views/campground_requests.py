@@ -1,6 +1,6 @@
 import sqlite3
 from models import Campground
-from sql_helper import get_all, get_single, create_resource
+from sql_helper import get_all, get_single, create_resource, get_all_by_param
 
 def get_all_campgrounds():
     """Gets all campgrounds
@@ -122,3 +122,30 @@ def update_campground(id, new_campground):
     # Forces 204 response by main module
     return True
     
+def get_campgrounds_by_park(park_id):
+    """Gets all campgrounds by checking for a park_id parameter
+    Returns:
+        list: All campground dictionaries"""
+    
+    sql = """
+        SELECT
+            c.id,
+            c.name,
+            c.park_id,
+            c.available_sites,
+            c.description
+        FROM Campgrounds c
+        WHERE park_id =?
+        """ 
+
+    campgrounds = []
+
+    dataset = get_all_by_param(sql, park_id)
+
+    for row in dataset:
+
+        campground = Campground(row['id'], row['name'], row['park_id'], row['available_sites'], row['description'])
+
+        campgrounds.append(campground.__dict__)
+
+    return campgrounds
