@@ -1,6 +1,5 @@
-import sqlite3
 from method_mapper import method_mapper
-from models import Blog
+from views import get_blogs_by_park_id_and_search_term
 def all(resource):
     """For GET requests to collection"""
     return method_mapper[resource]["all"]()
@@ -34,41 +33,3 @@ def update(resource, id, post_body):
 def delete(resource, id):
     """For DELETE requests to a single resource"""
     return method_mapper[resource]["delete"](id)
-
-
-def get_blogs_by_park_id_and_search_term(park_id, search_term):
-    """Sends the sql query to get a list of all blog dictionaries to get_all as a parameter
-
-    Returns:
-        list: of all blog dictionaries
-    """
-
-    with sqlite3.connect("./national_park.sqlite3") as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
-        db_cursor.execute("""
-            SELECT
-                b.id,
-                b.title,
-                b.post_body,
-                b.date_created,
-                b.user_id,
-                b.park_id,
-                p.url as photo_url
-            FROM Blogs b
-            LEFT JOIN Blog_Photos bp ON
-            b.id = bp.blog_id
-            LEFT JOIN Photos p ON
-            p.id = bp.photo_id
-            WHERE b.park_id = ? AND (b.title LIKE ? OR b.post_body LIKE ?)
-            """, ( park_id, f"%{search_term}%", f"%{search_term}%"))
-
-        blogs = []
-
-        dataset = db_cursor.fetchall()
-
-        for row in dataset:
-            blog = Blog(row['id'],row['title'],row['post_body'],row['date_created'],row['user_id'],row['park_id'], row['photo_url'])
-            blogs.append(blog.__dict__)
-
-    return blogs
