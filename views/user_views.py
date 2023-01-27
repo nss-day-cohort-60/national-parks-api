@@ -66,10 +66,12 @@ def get_user_by_email(email):
     )
 
     user = {}
-    row = get_all_by_param(sql, email)[0]
-    user = User(row["id"], row["first_name"], row["last_name"], row["email"], row["password"], row["isRanger"])
-
-    return user.__dict__
+    try:
+        row = get_all_by_param(sql, email)[0]
+        user = User(row["id"], row["first_name"], row["last_name"], row["email"], row["password"], row["isRanger"])
+        return user.__dict__
+    except IndexError:
+        return None
 
 def update_user(id, new_user):
     """Posts a new dictionary of class User to the database, given all User properties
