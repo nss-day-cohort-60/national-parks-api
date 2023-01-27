@@ -1,5 +1,6 @@
 import sqlite3
 from models import Blog
+import datetime
 from sql_helper import get_all, get_single, create_resource, get_all_by_param
 
 def get_all_blogs():
@@ -149,13 +150,15 @@ def get_blogs_by_park_id(park_id):
 def create_blog(new_blog):
     """Creates new blog dictionary"""
 
+    date_created = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
     sql="""
         INSERT INTO Blogs
             ( title, post_body, date_created, user_id, park_id, photo_id )
         VALUES
             ( ?, ?, ?, ?, ?, ?);
         """
-    sql_values=(new_blog['title'], new_blog['post_body'], new_blog['date_created'],new_blog['user_id'], new_blog['park_id'], new_blog['photo_id'])
+    sql_values=(new_blog['title'], new_blog['post_body'], date_created, new_blog['user_id'], new_blog['park_id'], new_blog['photo_id'])
 
     new_resource = create_resource(sql, sql_values, new_blog)
 
