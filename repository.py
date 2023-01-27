@@ -1,4 +1,7 @@
 from method_mapper import method_mapper
+from models import Blog
+from views import get_photos_by_user_id_and_park_id
+
 from views import get_blogs_by_park_id_and_search_term
 def all(resource):
     """For GET requests to collection"""
@@ -18,7 +21,7 @@ def retrieve(resource, id):
             #needs sql query function in blog_views
             return get_blogs_by_park_id_and_search_term(value, second_value)
         elif resource == "photos" and parameter == "user_id" and second_parameter == "park_id":
-            return #a new sql query function from views
+            return get_photos_by_user_id_and_park_id(value, second_value)
     except IndexError:
         return method_mapper[resource][parameter](value)
 

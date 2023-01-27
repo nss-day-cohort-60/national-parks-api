@@ -169,3 +169,37 @@ def update_photos(id, new_photo):
     else:
         # Forces 204 response by main module
         return True
+
+def get_photos_by_user_id_and_park_id(user_id, park_id):
+    """Gets all photos associated with a park and user id
+
+    Args:
+        user_id (int): Primary key of user who uploaded photo
+        park_id (int): Primary key of park associated with photo
+
+    Returns:
+        list: A list of all photo dictionaries that are associated with both the user_id and park_id
+    """
+    with sqlite3.connect("./national_park.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+        db_cursor.execute("""
+            SELECT
+                p.id,
+                p.url, 
+                p.user_id,
+                p.park_id
+            FROM Photos p
+            WHERE p.user_id = ?
+            AND p.park_id = ?
+            """, ( user_id, park_id))
+
+        photos = []
+
+        dataset = db_cursor.fetchall()
+
+        for row in dataset:
+            photo = Photos(row['id'], row['url'], row['user_id'], row['park_id'])
+            photos.append(photo.__dict__)
+
+    return photos
