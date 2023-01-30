@@ -32,7 +32,7 @@ def get_all_blogs():
     dataset = get_all(sql)
 
     for row in dataset:
-        blog = Blog(row['id'],row['title'],row['post_body'],row['date_created'],row['user_id'],row['park_id'], row['photo_url'])
+        blog = Blog(row['id'],row['title'],row['post_body'],row['date_created'],row['user_id'],row['park_id'],row['photo_url'])
         blogs.append(blog.__dict__)
 
     return blogs
@@ -155,11 +155,11 @@ def create_blog(new_blog):
 
     sql="""
         INSERT INTO Blogs
-            ( title, post_body, date_created, user_id, park_id, photo_id )
+            ( title, post_body, date_created, user_id, park_id, photo_url )
         VALUES
             ( ?, ?, ?, ?, ?, ?);
         """
-    sql_values=(new_blog['title'], new_blog['post_body'], date_created, new_blog['user_id'], new_blog['park_id'], new_blog['photo_id'])
+    sql_values=(new_blog['title'], new_blog['post_body'], date_created, new_blog['user_id'], new_blog['park_id'], new_blog['photo_url'])
 
     new_resource = create_resource(sql, sql_values, new_blog)
 
